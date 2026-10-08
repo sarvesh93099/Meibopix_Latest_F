@@ -1379,6 +1379,11 @@ const MeibographyStandalone = () => {
 
   const scheduleAutoEnhance = (originalImageData) => {
     cancelPendingAutoEnhance()
+    setPendingUploadContext((previousContext) => (
+      previousContext?.originalImageData === originalImageData
+        ? { ...previousContext, enhancementStatus: 'pending' }
+        : previousContext
+    ))
     // Import/load the real models while the person reviews their selected image.
     if (activeTestSectionRef.current === 'meibography') void warmMeibographyModel()
     updateMeibographyWorkflow({
@@ -1411,9 +1416,10 @@ const MeibographyStandalone = () => {
           return
         }
 
-        const enhancedImageDataUrl = isImageData(result?.enhanced_image_data)
-          ? result.enhanced_image_data
-          : originalImageData
+        if (!isImageData(result?.enhanced_image_data)) {
+          throw new Error('Auto-enhancement did not return a processed image. Retry enhancement before eyelid detection.')
+        }
+        const enhancedImageDataUrl = result.enhanced_image_data
 
         if (activeTestSectionRef.current !== 'tear-meniscus') {
           setReviewSnapshot(enhancedImageDataUrl)
@@ -1426,7 +1432,8 @@ const MeibographyStandalone = () => {
           return {
             ...previousContext,
             sourceImageData: enhancedImageDataUrl,
-            originalImageData
+            originalImageData,
+            enhancementStatus: 'complete'
           }
         })
         updateMeibographyWorkflow({
@@ -1443,6 +1450,11 @@ const MeibographyStandalone = () => {
 
         console.error('Scheduled auto enhancement error:', error)
         const errorMessage = error?.response?.data?.error || 'Failed to auto enhance image.'
+        setPendingUploadContext((previousContext) => (
+          previousContext?.originalImageData === originalImageData
+            ? { ...previousContext, enhancementStatus: 'failed' }
+            : previousContext
+        ))
         updateMeibographyWorkflow({
           stage: 'auto-enhance-error',
           title: 'Auto enhancement failed',
@@ -1519,7 +1531,6 @@ const MeibographyStandalone = () => {
       return
     }
 
-    cancelPendingAutoEnhance()
     cancelMeibographyPlayback()
     handleSectionChange('tear-meniscus', { forceLowerLid: true })
     setIsAnnotateMode(false)
@@ -1571,12 +1582,23 @@ const MeibographyStandalone = () => {
   }
 
   const handleAnalyzeMeibography = async () => {
-    if (!reviewSnapshot) {
+    const uploadContext = pendingUploadContextRef.current || pendingUploadContext
+    if (!reviewSnapshot || !uploadContext) {
       showToastMessage('Capture or upload an image first.')
       return
     }
 
-    const sourceLid = pendingUploadContext?.sourceLid
+    if (uploadContext.enhancementStatus !== 'complete' || !isImageData(uploadContext.sourceImageData)) {
+      if (uploadContext.enhancementStatus === 'failed' && isImageData(uploadContext.originalImageData)) {
+        scheduleAutoEnhance(uploadContext.originalImageData)
+        showToastMessage('Retrying auto-enhancement. Eyelid detection will be available when it finishes.')
+      } else {
+        showToastMessage('Please wait for auto-enhancement to finish before eyelid detection.')
+      }
+      return
+    }
+
+    const sourceLid = uploadContext.sourceLid
     if (sourceLid && sourceLid !== currentLid) {
       const promptMessage = getLidMismatchPrompt(sourceLid)
       resetMeibographyWorkflow()
@@ -1590,7 +1612,6 @@ const MeibographyStandalone = () => {
       return
     }
 
-    cancelPendingAutoEnhance()
     cancelMeibographyPlayback()
     const analysisToken = meibographyPlaybackTokenRef.current
     const resultKey = getImageKey(currentEye, currentLid)
@@ -1605,7 +1626,7 @@ const MeibographyStandalone = () => {
           ? meibographyWorkflow.visiblePreviewKeys
           : ['source']
       })
-      const sourceImageData = pendingUploadContext?.sourceImageData || reviewSnapshot
+      const sourceImageData = uploadContext.sourceImageData
       const result = await requestMeibographyAnalysis(sourceImageData)
       if (!isMountedRef.current || meibographyPlaybackTokenRef.current !== analysisToken) {
         return
@@ -1660,7 +1681,8 @@ const MeibographyStandalone = () => {
         sourceImageData,
         originalImageData: pendingUploadContext?.originalImageData || sourceImageData,
         sourceLid: result?.detected_lid || result?.eyelid_side || pendingUploadContext?.sourceLid || null,
-        analysisType: 'meibography'
+        analysisType: 'meibography',
+        enhancementStatus: 'complete'
       })
       const playbackCompleted = await playMeibographyDetectionSequence({
         sourceImage: sourceStageImage,
@@ -1760,7 +1782,6 @@ const MeibographyStandalone = () => {
       showToastMessage('Capture an image first to annotate.')
       return
     }
-    cancelPendingAutoEnhance()
     cancelMeibographyPlayback()
     setIsTearMeasureMode(false)
     setTearMeasurementDraftPoints([])
@@ -1797,7 +1818,8 @@ const MeibographyStandalone = () => {
           sourceImageData: snapshotSource,
           originalImageData: snapshotSource,
           sourceLid: null,
-          analysisType: ''
+          analysisType: '',
+          enhancementStatus: 'pending'
         })
         resetMeibographyWorkflow()
         setReviewSnapshot(snapshotSource)
@@ -1862,7 +1884,8 @@ const MeibographyStandalone = () => {
         sourceImageData: snapshotDataUrl,
         originalImageData: snapshotDataUrl,
         sourceLid: null,
-        analysisType: ''
+        analysisType: '',
+        enhancementStatus: 'pending'
       })
       resetMeibographyWorkflow()
       setReviewSnapshot(snapshotDataUrl)
@@ -2115,7 +2138,8 @@ const MeibographyStandalone = () => {
         sourceImageData: selectedImageDataUrl,
         originalImageData: selectedImageDataUrl,
         sourceLid: sample?.lid || null,
-        analysisType: ''
+        analysisType: '',
+        enhancementStatus: 'pending'
       })
       scheduleAutoEnhance(selectedImageDataUrl)
       showToastMessage(sample ? `${sample.label} loaded. Preparing the image.` : 'Image uploaded. Preparing the image.')
@@ -3005,6 +3029,14 @@ const MeibographyStandalone = () => {
 
   const currentImageKey = getImageKey(currentEye, currentLid)
   const currentMeibographyResult = meibographyResults[currentImageKey] || null
+  const isAutoEnhancementComplete = Boolean(
+    pendingUploadContext?.enhancementStatus === 'complete' &&
+    isImageData(pendingUploadContext?.sourceImageData)
+  )
+  const canStartMeibographyAnalysis = Boolean(
+    reviewSnapshot && pendingUploadContext && !isAnalyzingMeibography &&
+    (isAutoEnhancementComplete || pendingUploadContext.enhancementStatus === 'failed')
+  )
   const currentTearMeasurement = tearMeasurements[currentEye]
   const tearOverlayPoints = isTearMeasureMode
     ? tearMeasurementDraftPoints
@@ -3097,6 +3129,15 @@ const MeibographyStandalone = () => {
       : null
   ].filter(Boolean)
   const analyzeMeibographyButtonLabel = (() => {
+    if (pendingUploadContext?.enhancementStatus === 'failed') {
+      return 'Retry auto-enhance'
+    }
+    if (pendingUploadContext?.enhancementStatus === 'pending') {
+      return meibographyWorkflow.stage === 'auto-enhancing' ? 'Auto-enhancing...' : 'Auto-enhance required'
+    }
+    if (!isAutoEnhancementComplete) {
+      return 'Auto-enhance required'
+    }
     if (meibographyWorkflow.stage === 'complete') {
       return 'Analysis ready'
     }
@@ -3822,7 +3863,7 @@ const MeibographyStandalone = () => {
                             value: 'analyze',
                             label: analyzeMeibographyButtonLabel,
                             icon: BarChart3,
-                            disabled: isAnalyzingMeibography,
+                            disabled: !canStartMeibographyAnalysis,
                             onClick: handleAnalyzeMeibography
                           },
                           {
