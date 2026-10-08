@@ -1,11 +1,23 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/api/:path*",
       "destination": "https://meibopix-api-gcxkayuhfq-el.a.run.app/api/:path*"
     },
     {
-      "source": "/(.*)",
+      "source": "/uploads/:path*",
+      "destination": "https://meibopix-api-gcxkayuhfq-el.a.run.app/uploads/:path*"
+    },
+    {
+      "source": "/reports/:path*",
+      "destination": "https://meibopix-api-gcxkayuhfq-el.a.run.app/reports/:path*"
+    },
+    {
+      "source": "/((?!api/|uploads/|reports/|assets/).*)",
       "destination": "/index.html"
     }
   ]
