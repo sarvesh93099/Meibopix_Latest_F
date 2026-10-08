@@ -12,6 +12,8 @@ import SampleImagesGallery from '../features/meibography/SampleImagesGallery'
 import { createAnalysisRequestCache } from '../features/meibography/analysisCache'
 import OcularAnalysisPanel from '../components/OcularAnalysisPanel'
 import BlinkSessionSegmentedControl from '../components/BlinkSessionSegmentedControl'
+import { BlinkCameraGuide, BlinkAnalysisProgress } from '../components/BlinkCameraFeedback'
+import { getCameraGuidance } from '../features/blink/cameraGuidance'
 import LoadingState from '../components/LoadingState'
 import { buildLocalBlinkResult, createBlinkTrackingState, updateBlinkTracking } from '../features/blink/blinkDetection'
 import { TEST_CATALOG } from '../features/tests/catalog'
@@ -111,6 +113,7 @@ const MeibographyStandalone = () => {
   const [blinkCounterResult, setBlinkCounterResult] = useState(null)
   const [isAnalyzingBlinkCounter, setIsAnalyzingBlinkCounter] = useState(false)
   const [blinkVideoProgress, setBlinkVideoProgress] = useState(null)
+  const [blinkGuidance, setBlinkGuidance] = useState({ status: 'waiting', message: 'Preparing camera guidance…' })
   const [isRecordingBlinkCounter, setIsRecordingBlinkCounter] = useState(false)
   const [blinkRecordingSecondsLeft, setBlinkRecordingSecondsLeft] = useState(BLINK_RECORDING_DURATION_SECONDS)
   const [liveBlinkMetrics, setLiveBlinkMetrics] = useState({
@@ -2200,6 +2203,37 @@ const MeibographyStandalone = () => {
     return localBlinkLandmarkerInitPromiseRef.current
   }
 
+  // Preview guidance uses the same detector as counting, and stops before a
+  // session starts. No camera frames are uploaded for local guidance.
+  useEffect(() => {
+    if (activeTestSection !== 'blink-rate' || !cameraReady || isRecordingBlinkCounter || isAnalyzingBlinkCounter) return
+    if (isServerCameraMode) {
+      setBlinkGuidance({ status: 'waiting', message: 'Center your face and keep both eyes visible' })
+      return
+    }
+    let cancelled = false
+    let timer
+    setBlinkGuidance({ status: 'waiting', message: 'Preparing camera guidance…' })
+    const tick = async () => {
+      try {
+        const detector = await ensureLocalBlinkLandmarker()
+        if (cancelled || isRecordingBlinkCounterRef.current) return
+        const video = videoRef.current
+        if (document.hidden || !video?.videoWidth || video.readyState < 2) {
+          setBlinkGuidance({ status: 'waiting', message: 'Waiting for the camera…' })
+        } else {
+          const raw = detector.detectForVideo(video, performance.now())
+          setBlinkGuidance(getCameraGuidance(raw, video.videoWidth, video.videoHeight))
+        }
+        if (!cancelled) timer = setTimeout(tick, 250)
+      } catch {
+        if (!cancelled) setBlinkGuidance({ status: 'waiting', message: 'Guidance unavailable. Keep your face centered and well lit' })
+      }
+    }
+    tick()
+    return () => { cancelled = true; clearTimeout(timer) }
+  }, [activeTestSection, cameraReady, isServerCameraMode, isRecordingBlinkCounter, isAnalyzingBlinkCounter])
+
   const analyzeBlinkFrameLive = async (loopToken = blinkLiveLoopTokenRef.current) => {
     if (loopToken !== blinkLiveLoopTokenRef.current || !isRecordingBlinkCounterRef.current) return
     if (blinkLivePendingRequestRef.current) return
@@ -2207,9 +2241,11 @@ const MeibographyStandalone = () => {
     try {
       blinkLivePendingRequestRef.current = true
       let result
+      let guidance
       if (isServerCameraMode) {
         const response = await axios.post(`${API_BASE_URL}/api/blink-counter/frame`, { use_server_camera: true }, { timeout: 5000 })
         result = response?.data?.result
+        guidance = { status: result?.face_found ? 'ready' : 'adjust', message: result?.face_found ? 'Face detected. Keep both eyes visible and blink naturally' : 'Bring your face into view' }
       } else {
         const video = videoRef.current
         if (!video?.videoWidth || video.readyState < 2 || document.hidden) return
@@ -2217,6 +2253,7 @@ const MeibographyStandalone = () => {
         if (!landmarker) return
         const rawResult = landmarker.detectForVideo(video, performance.now())
         result = extractBlinkFrameResultFromLocalLandmarker(rawResult, video.videoWidth, video.videoHeight)
+        guidance = getCameraGuidance(rawResult, video.videoWidth, video.videoHeight)
       }
       if (loopToken !== blinkLiveLoopTokenRef.current || !isRecordingBlinkCounterRef.current) return
       const elapsed = Math.min(BLINK_RECORDING_DURATION_SECONDS, (Date.now() - blinkRecordingStartedAtRef.current) / 1000)
@@ -2227,6 +2264,7 @@ const MeibographyStandalone = () => {
         blinkLastUiUpdateRef.current = started
         blinkLastUiCountRef.current = tracking.totalBlinks
         blinkLastUiFaceRef.current = tracking.faceFound
+        setBlinkGuidance(guidance)
         setLiveBlinkMetrics({
           totalBlinks: tracking.totalBlinks,
           bpmOverall: Number(((tracking.totalBlinks / Math.max(1, elapsed)) * 60).toFixed(1)),
@@ -2235,6 +2273,7 @@ const MeibographyStandalone = () => {
       }
     } catch (error) {
       if (!blinkLiveErrorShownRef.current && loopToken === blinkLiveLoopTokenRef.current) {
+        setBlinkGuidance({ status: 'adjust', message: 'Tracking interrupted. Keep your face visible' })
         blinkLiveErrorShownRef.current = true
         showToastMessage('Eye tracking paused. Keep your face in view, or use the simple calculator below.')
       }
@@ -3302,6 +3341,7 @@ const MeibographyStandalone = () => {
                         {cameraError || 'Camera is not ready. Enable camera access to record blink rate.'}
                       </div>
                     )}
+                    {cameraReady && <BlinkCameraGuide guidance={blinkGuidance} recording={isRecordingBlinkCounter} count={liveBlinkMetrics.totalBlinks} />}
                     {cameraReady && !isRecordingBlinkCounter && !isAnalyzingBlinkCounter && (
                       <button
                         type="button"
@@ -3314,6 +3354,8 @@ const MeibographyStandalone = () => {
                       </button>
                     )}
                   </div>
+
+                  <BlinkAnalysisProgress recording={isRecordingBlinkCounter} secondsLeft={blinkRecordingSecondsLeft} duration={BLINK_RECORDING_DURATION_SECONDS} analyzing={isAnalyzingBlinkCounter} progress={blinkVideoProgress} result={blinkCounterResult} />
 
                   {(blinkVideoFile || isRecordingBlinkCounter) && (
                     <div className="blink-counter-file-meta">
