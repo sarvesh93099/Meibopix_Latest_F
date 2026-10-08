@@ -1,0 +1,56 @@
+/* assessment styles: loaded only by the screens that use them. */
+
+.exam-guide { padding: 20px 25px; background: #f7faf7; border-bottom: 1px solid var(--line); }
+.exam-guide-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.exam-guide h2 { font-size: 23px; font-weight: 600; letter-spacing: -.7px; margin-bottom: 5px; }
+.exam-guide p { font-size: 12px; color: #7d9180; line-height: 1.7; }
+.exam-guide ol { list-style: none; display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; margin-top: 17px; }
+.exam-guide li { display: flex; gap: 9px; color: #7b8d7d; font-size: 11px; line-height: 1.7; }
+.exam-guide li > span { border: 1px solid #d4e2d7; background: #fff; width: 23px; height: 23px; display: grid; place-items: center; border-radius: 50%; flex-shrink: 0; font-size: 9px; color: #5e8067; }
+.exam-demo-label { padding: 6px 10px; background: #eaf3e3; border-radius: 6px; color: #738961; font-size: 10px; white-space: nowrap; }
+.exam-nav-description { display: block; font-size: 9px; color: #9bac9f; margin-top: 5px; font-weight: 400; }
+.meibography-nav-link { font-size: 13px; }
+.meibography-nav-link.active .exam-nav-description { color: #719681; }
+.meibography-container { min-height: 100dvh; height: auto; background: #f6f8f7; }
+.meibography-sidebar { background: white; border-color: var(--line); box-shadow: none; }
+.meibography-main { background: #f6f8f7; min-width: 0; }
+.meibography-top-header { background: #fff; box-shadow: none; border-color: var(--line); }
+.meibography-brand-chip { background: #edf5ef; color: var(--accent); }
+.meibography-action-toolbar { background: #fff; border-color: var(--line); }
+.meibography-nav-link.active { background: #eaf5ef; color: var(--accent); }
+.blink-counter-card { box-shadow: none; border-color: var(--line); }
+.blink-counter-preview-shell { background: #1f3128; }
+.meibography-user-section .meibography-bell-icon { display: none; }
+.meibography-patient-select { font-size: 12px; }
+.blink-help-copy { font-size: 12px; color: #859184; line-height: 1.8; margin: 10px 0; }
+.blink-manual-card { margin: 20px 0; padding: 18px; border: 1px solid #e0e8dc; background: #f8faf5; border-radius: 13px; }
+.blink-manual-card h3 { font-size: 16px; font-weight: 600; color: #59734e; }
+.blink-manual-form { display: flex; flex-direction: column; gap: 13px; }
+.blink-manual-form label { display: flex; flex-direction: column; gap: 7px; font-size: 11px; color: #7c8e71; }
+.blink-manual-form input { padding: 11px 12px; border: 1px solid #dce5d5; border-radius: 8px; width: 100%; background: #fff; color: #506a45; min-height: 44px; }
+.blink-input-error { color: #b46464; font-size: 11px; }
+.blink-manual-form .ocular-tool-btn { background: #4c8c61; color: #fff; border: 0; min-height: 44px; border-radius: 9px; }
+.meibography-nav-link { display: flex; align-items: center; gap: 11px; }
+.meibography-nav-link > svg { flex-shrink: 0; }
+.meibography-action-toolbar .secondary-action { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+@media (max-width: 960px) { .meibography-container { overflow: visible; } .exam-guide ol { gap: 12px; } }
+@media (max-width: 640px) { .exam-guide { padding: 20px 17px; } .exam-guide h2 { font-size: 22px; } .exam-guide ol { grid-template-columns: 1fr; gap: 10px; } .exam-guide li { font-size: 12px; } .exam-guide-top { flex-wrap: wrap; } .exam-nav-description { display: none; } .meibography-nav-list { display: flex; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 5px; } .meibography-nav-item { flex-shrink: 0; } .meibography-nav-link { width: auto; white-space: nowrap; padding: 10px 15px; font-size: 12px; } .meibography-sidebar { width: 100%; } .meibography-container { display: flex; flex-direction: column; } .meibography-main { width: 100%; } .meibography-content { padding: 15px; } .meibography-top-header { min-height: 55px; } .meibography-greeting { font-size: 11px; } }
+.exam-guide p { font-size: 14px; color: #64786c; }
+.exam-guide li { font-size: 13px; color: #607768; }
+.blink-manual-form label, .blink-help-copy { font-size: 13px; color: #657960; }
+.meibography-sidebar, .meibography-top-header { backdrop-filter: none; }
+.exam-camera-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 16px 24px; }
+.exam-camera-actions > span { color: #718475; font-size: 12px; }
+.blink-counter-title { color: var(--text); }
+.blink-counter-inline-metric { background: #f8faf7; border: 1px solid var(--line); border-radius: 11px; }
+.blink-counter-inline-metric span { color: #708775; }
+.blink-counter-inline-metric strong { color: var(--text); font-weight: 600; }
+.meibography-nav-link.active { box-shadow: none; }
+
+/* Match the focused assessment surface to the care workspace. */
+.meibography-container { background: #f5f6f2; }
+.meibography-header { border-bottom-color: #dfe6dc; box-shadow: none; }
+.exam-guide { border-color: #dce5d6; background: #f5f8f0; border-radius: 14px; }
+.exam-guide h2 { color: #294f36; letter-spacing: -.5px; }
+.exam-guide p { color: #596f53; }
+.meibography-toolbar, .exam-results-panel { border-color: #dfe6dc; box-shadow: 0 6px 18px #183d3006; }

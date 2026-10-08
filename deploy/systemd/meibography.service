@@ -1,0 +1,23 @@
+[Unit]
+Description=Meibography Flask Backend
+After=network.target
+
+[Service]
+Type=simple
+User=meibography
+Group=meibography
+WorkingDirectory=/opt/meibography/meibography/backend
+EnvironmentFile=/opt/meibography/meibography/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/meibography/meibography/.venv/bin/python serve.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

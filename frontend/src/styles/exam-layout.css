@@ -1,0 +1,288 @@
+/* Assessment layout: the document owns scrolling; each grid column starts at the top. */
+.meibography-container {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr) 320px;
+  grid-template-rows: auto;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100dvh;
+  height: auto;
+  overflow: visible;
+}
+
+.meibography-container.meibography-container-no-side-panel {
+  grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.meibography-container > .meibography-sidebar {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 100dvh;
+  overflow: visible;
+}
+
+.meibography-container > .meibography-main {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  overflow: visible;
+}
+
+.meibography-container > .ocular-analysis-panel {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: start;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  padding: 20px 16px;
+}
+
+.meibography-container .meibography-content {
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  padding: 20px;
+}
+
+.meibography-container .meibography-header { padding: 20px 16px; }
+.meibography-container .meibography-patient-section { margin-bottom: 0; }
+.meibography-container .meibography-patient-label { flex-wrap: wrap; gap: 6px; }
+.meibography-container .meibography-title { font-size: 23px; }
+.meibography-container .meibography-header-title { align-items: center; }
+.meibography-container .meibography-nav { padding: 12px; }
+.meibography-container .meibography-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 13px 12px;
+  white-space: normal;
+}
+.meibography-container .meibography-nav-link > svg { flex-shrink: 0; }
+.meibography-container .meibography-nav-link > span { min-width: 0; }
+.meibography-container .meibography-top-header {
+  min-height: 72px;
+  padding: 16px 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.meibography-container .meibography-brand { min-width: 0; gap: 10px; }
+.meibography-container .meibography-logo { margin-right: 0; flex-shrink: 0; }
+.meibography-container .meibography-brand-chip { white-space: normal; }
+.meibography-container .meibography-user-section { gap: 10px; min-width: 0; }
+.meibography-container .meibography-user-avatar { flex-shrink: 0; }
+.meibography-container .meibography-greeting { overflow-wrap: anywhere; }
+.meibography-container .exam-guide { padding: 20px; }
+.meibography-container .exam-guide-top { flex-wrap: wrap; gap: 10px; }
+.meibography-container .exam-guide-top > div { min-width: 0; }
+.meibography-container .exam-guide ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.meibography-container .exam-guide li { min-width: 0; }
+.meibography-container .exam-demo-label { white-space: normal; }
+
+.meibography-container .meibography-action-toolbar {
+  width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 14px 20px;
+  overflow: visible;
+}
+.meibography-container .meibography-action-toolbar > .secondary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 1 auto;
+  max-width: 100%;
+}
+.meibography-container .meibography-capture-segmented-control,
+.meibography-container .meibography-review-segmented-control,
+.meibography-container .meibography-tear-segmented-control,
+.meibography-container .meibography-blink-segmented-control {
+  flex: 1 1 440px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+.meibography-container .meibography-bottom-toolbar {
+  position: relative;
+  top: auto;
+  margin: 0;
+  border-radius: 0 0 18px 18px;
+  box-shadow: none;
+  z-index: 140;
+}
+.meibography-container .meibography-active-target-pill { max-width: 100%; white-space: normal; }
+
+/* A bounded, uncropped camera image keeps the whole face in view. */
+.meibography-container .blink-counter-workspace { min-width: 0; }
+.meibography-container .blink-counter-card {
+  width: 100%;
+  min-width: 0;
+  padding: 20px;
+  border-radius: 18px;
+}
+.meibography-container .blink-counter-preview-shell {
+  width: 100%;
+  height: clamp(220px, 38dvh, 360px);
+  min-height: 0;
+  border-radius: 14px;
+  background: #1f3128;
+}
+.meibography-container .blink-counter-preview-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.meibography-container .blink-counter-placeholder { inset: auto 16px 16px; padding: 16px; }
+.meibography-container .blink-counter-inline-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.meibography-container .blink-counter-inline-metric { min-width: 0; padding: 12px; }
+.meibography-container .blink-counter-inline-metric strong { overflow-wrap: anywhere; }
+
+.meibography-container .meibography-live-workspace { gap: 0; }
+.meibography-container .meibography-camera-container-full {
+  width: 100%;
+  height: clamp(260px, 45dvh, 460px);
+  min-height: 0;
+  border-radius: 18px 18px 0 0;
+  box-shadow: none;
+}
+.meibography-container .meibography-camera-img-full { object-fit: contain; }
+.meibography-container .meibography-camera-eye-selector { width: min(calc(100% - 32px), 420px); }
+.meibography-container .ocular-eye-selector { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.meibography-container .ocular-eye-selector-btn { min-width: 0; }
+.meibography-container .meibography-annotation-hint { max-width: calc(100% - 32px); white-space: normal; }
+.meibography-container .meibography-analysis-preview-grid,
+.meibography-container .meibography-workflow-status { width: 100%; min-width: 0; }
+.meibography-container .meibography-analysis-preview-title { flex-wrap: wrap; }
+
+.meibography-container .ocular-content,
+.meibography-container .ocular-active-eye-card { min-width: 0; }
+.meibography-container .ocular-analysis-section { margin-top: 0; padding: 14px; }
+.meibography-container .ocular-analysis-header-row { flex-wrap: wrap; }
+.meibography-container .ocular-analysis-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.meibography-container .ocular-analysis-metric-card { min-width: 0; }
+.meibography-container .ocular-analysis-result-badge { white-space: normal; }
+.meibography-container .ocular-tear-actions { flex-wrap: wrap; }
+.meibography-container .ocular-tear-actions > button { flex: 1 1 110px; min-width: 0; }
+.meibography-container .blink-manual-form input { min-width: 0; max-width: 100%; }
+.meibography-container .ocular-analysis-summary { overflow-wrap: anywhere; }
+
+/* Questionnaires and image tests keep their height in the same document flow. */
+.meibography-container .clinical-test-panel,
+.meibography-container .clinical-module-stage {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  padding: 0;
+}
+.meibography-container .clinical-test-card { min-width: 0; padding: 22px; }
+
+/* Leave useful space for the task at browser zoom and smaller laptop widths. */
+@media (max-width: 1279px) {
+  .meibography-container,
+  .meibography-container.meibography-container-no-side-panel {
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .meibography-container > .meibography-sidebar { grid-row: 1 / span 2; }
+  .meibography-container > .ocular-analysis-panel {
+    grid-column: 2;
+    grid-row: 2;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 20px;
+  }
+  .meibography-container .blink-counter-panel .ocular-active-eye-card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 16px;
+  }
+  .meibography-container .blink-counter-panel .blink-manual-card { margin-top: 0; }
+  .meibography-container .blink-counter-panel .ocular-report-actions { grid-column: 1 / -1; margin-top: 0; }
+}
+
+@media (max-width: 959px) {
+  .meibography-container,
+  .meibography-container.meibography-container-no-side-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+  }
+  .meibography-container > .meibography-sidebar {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .meibography-container > .meibography-main { grid-column: 1; grid-row: 2; }
+  .meibography-container > .ocular-analysis-panel { grid-column: 1; grid-row: 3; }
+  .meibography-container .meibography-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .meibography-container .meibography-header-title { margin-bottom: 0; }
+  .meibography-container .meibography-patient-section { flex: 1 1 250px; max-width: 380px; }
+  .meibography-container .meibography-patient-card { margin-top: 0; }
+  .meibography-container .meibography-nav-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+  .meibography-container .meibography-nav-item { margin: 0; min-width: 0; }
+  .meibography-container .meibography-nav-link { height: 100%; font-size: 12px; }
+  .meibography-container .exam-nav-description { display: none; }
+}
+
+@media (max-width: 639px) {
+  .meibography-container .meibography-header { padding: 16px; gap: 12px; }
+  .meibography-container .meibography-patient-section { max-width: none; }
+  .meibography-container .meibography-nav-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .meibography-container .meibography-nav-link { padding: 10px; gap: 8px; }
+  .meibography-container .meibography-top-header { min-height: 0; padding: 14px 16px; }
+  .meibography-container .meibography-brand-copy { flex-direction: row; }
+  .meibography-container .meibography-brand-chip { font-size: 10px; padding: 6px 9px; }
+  .meibography-container .meibography-user-section { width: auto; }
+  .meibography-container .meibography-greeting { font-size: 12px; }
+  .meibography-container .exam-guide { padding: 18px 16px; }
+  .meibography-container .exam-guide ol { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .meibography-container .meibography-content { padding: 16px; }
+  .meibography-container .meibography-action-toolbar { padding: 12px 16px; }
+  .meibography-container .meibography-action-toolbar > .secondary-action { width: 100%; }
+  .meibography-container .blink-counter-card { padding: 14px; }
+  .meibography-container .blink-counter-title { font-size: 20px; }
+  .meibography-container .blink-counter-preview-shell { height: clamp(190px, 34dvh, 280px); }
+  .meibography-container .blink-counter-placeholder { inset: auto 10px 10px; padding: 12px; font-size: 13px; }
+  .meibography-container .meibography-camera-container-full { height: clamp(230px, 38dvh, 340px); }
+  .meibography-container .meibography-camera-eye-selector { top: 12px; padding: 8px; gap: 8px; }
+  .meibography-container .ocular-eye-selector-btn { padding: 10px 8px; font-size: 13px; gap: 6px; }
+  .meibography-container > .ocular-analysis-panel { padding: 16px; }
+  .meibography-container .blink-counter-panel .ocular-active-eye-card { grid-template-columns: minmax(0, 1fr); }
+  .meibography-container .clinical-test-card { padding: 16px; }
+  .meibography-container .meibography-bottom-toolbar { padding: 12px; }
+}

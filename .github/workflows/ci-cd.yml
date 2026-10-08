@@ -1,0 +1,241 @@
+name: CI/CD
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      deploy_backend:
+        description: Deploy backend changes to EC2
+        required: true
+        default: true
+        type: boolean
+      deploy_frontend:
+        description: Deploy frontend build to S3/CloudFront
+        required: true
+        default: true
+        type: boolean
+      run_ml_tests:
+        description: Run full inference checks using MODEL_SOURCE checkpoints
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: ci-cd-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend_smoke_tests:
+    name: Backend Smoke Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libglib2.0-0 libgl1
+
+      - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip wheel
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple -r backend/requirements.txt
+
+      - name: Run backend smoke tests
+        run: |
+          python backend/smoke_tests.py --skip-ml
+          python -m unittest discover -s backend/tests -v
+
+  backend_ml_tests:
+    name: Optional Model Inference Checks
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && inputs.run_ml_tests
+    env:
+      MODEL_SOURCE: ${{ vars.MODEL_SOURCE }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - name: Install full backend
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libglib2.0-0 libgl1
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple -r backend/requirements.txt
+      - name: Install verified checkpoints and test inference
+        run: |
+          python deploy/scripts/manage_models.py sync
+          python backend/smoke_tests.py
+
+  frontend_build:
+    name: Frontend Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+        run: npm run build
+
+      - name: Upload frontend build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist
+          if-no-files-found: error
+
+  deploy_backend:
+    name: Deploy Backend To EC2
+    runs-on: ubuntu-latest
+    needs:
+      - backend_smoke_tests
+      - frontend_build
+      - backend_ml_tests
+    if: >-
+      always() && needs.backend_smoke_tests.result == 'success' && needs.frontend_build.result == 'success' &&
+      (needs.backend_ml_tests.result == 'success' || needs.backend_ml_tests.result == 'skipped') &&
+      ((github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.ENABLE_AUTO_DEPLOY == 'true') ||
+      (github.event_name == 'workflow_dispatch' && inputs.deploy_backend))
+
+    env:
+      EC2_HOST: ${{ secrets.EC2_HOST }}
+      EC2_USER: ${{ secrets.EC2_USER }}
+      EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+      EC2_KNOWN_HOSTS: ${{ secrets.EC2_KNOWN_HOSTS }}
+      EC2_PORT: ${{ vars.EC2_PORT }}
+      EC2_APP_ROOT: ${{ vars.EC2_APP_ROOT }}
+      SKIP_FRONTEND_BUILD_ON_EC2: ${{ vars.SKIP_FRONTEND_BUILD_ON_EC2 }}
+
+    steps:
+      - name: Validate backend deploy configuration
+        shell: bash
+        run: |
+          missing=()
+          for key in EC2_HOST EC2_USER EC2_SSH_PRIVATE_KEY EC2_KNOWN_HOSTS; do
+            if [ -z "${!key:-}" ]; then
+              missing+=("$key")
+            fi
+          done
+
+          if [ ${#missing[@]} -gt 0 ]; then
+            printf 'Missing required GitHub secrets for backend deploy: %s\n' "${missing[*]}"
+            exit 1
+          fi
+
+      - name: Prepare SSH
+        shell: bash
+        run: |
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf '%s\n' "$EC2_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_ed25519"
+          chmod 600 "$HOME/.ssh/id_ed25519"
+          printf '%s\n' "$EC2_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 644 "$HOME/.ssh/known_hosts"
+
+      - name: Deploy backend on EC2
+        shell: bash
+        run: |
+          EC2_PORT="${EC2_PORT:-22}"
+          EC2_APP_ROOT="${EC2_APP_ROOT:-/opt/meibography}"
+          SKIP_FRONTEND_BUILD_ON_EC2="${SKIP_FRONTEND_BUILD_ON_EC2:-true}"
+          GIT_BRANCH="${GITHUB_REF_NAME:-main}"
+
+          ssh -i "$HOME/.ssh/id_ed25519" -p "$EC2_PORT" "$EC2_USER@$EC2_HOST" \
+            "set -euo pipefail; \
+             export APP_ROOT='$EC2_APP_ROOT'; \
+             export GIT_BRANCH='$GIT_BRANCH'; \
+             export SKIP_FRONTEND_BUILD='$SKIP_FRONTEND_BUILD_ON_EC2'; \
+             cd '$EC2_APP_ROOT/meibography'; \
+             bash ./deploy/scripts/ec2_update.sh"
+
+  deploy_frontend:
+    name: Deploy Frontend To S3
+    runs-on: ubuntu-latest
+    needs:
+      - backend_smoke_tests
+      - frontend_build
+      - backend_ml_tests
+    if: >-
+      always() && needs.backend_smoke_tests.result == 'success' && needs.frontend_build.result == 'success' &&
+      (needs.backend_ml_tests.result == 'success' || needs.backend_ml_tests.result == 'skipped') &&
+      ((github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.ENABLE_AUTO_DEPLOY == 'true') ||
+      (github.event_name == 'workflow_dispatch' && inputs.deploy_frontend))
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      FRONTEND_S3_BUCKET: ${{ vars.FRONTEND_S3_BUCKET }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+
+    steps:
+      - name: Validate frontend deploy configuration
+        shell: bash
+        run: |
+          missing=()
+          for key in AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_REGION FRONTEND_S3_BUCKET; do
+            if [ -z "${!key:-}" ]; then
+              missing+=("$key")
+            fi
+          done
+
+          if [ ${#missing[@]} -gt 0 ]; then
+            printf 'Missing required GitHub secrets or variables for frontend deploy: %s\n' "${missing[*]}"
+            exit 1
+          fi
+
+      - name: Download frontend build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend-dist
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Upload frontend to S3
+        shell: bash
+        run: |
+          aws s3 sync frontend-dist/assets/ "s3://$FRONTEND_S3_BUCKET/assets/" --delete --cache-control "public, max-age=31536000, immutable"
+          aws s3 sync frontend-dist/ "s3://$FRONTEND_S3_BUCKET" --delete --exclude "assets/*" --cache-control "public, max-age=300, must-revalidate"
+
+      - name: Invalidate CloudFront cache
+        if: ${{ env.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        shell: bash
+        run: aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" --paths "/*"

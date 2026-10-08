@@ -1,0 +1,37 @@
+.meibography-container { background: #f5f8f7; }
+.meibography-container > .meibography-sidebar { background: #fff; border-right: 1px solid var(--line); }
+.meibography-container .meibography-top-header { background: #fff; border-bottom: 1px solid var(--line); }
+.meibography-container .meibography-brand-chip { color: var(--accent-strong); font-weight: 600; }
+.meibography-container .exam-guide { background: linear-gradient(120deg, #f2faf6, #fff); border-bottom: 1px solid var(--line); }
+.exam-kicker { display: block; font-size: 9px; letter-spacing: 1.6px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+.meibography-container .exam-guide h2 { letter-spacing: -.7px; color: var(--text); }
+.meibography-container .exam-guide ol { margin-top: 22px; }
+.meibography-container .exam-guide li { line-height: 1.7; }
+.meibography-container .exam-guide li > span { border-radius: 9px; background: #e5f1eb; color: #33735c; }
+.exam-session-status { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 11px; }
+.exam-session-status > span, .exam-session-status > a { display: inline-flex; align-items: center; gap: 7px; }
+.exam-session-status > a { color: var(--accent-strong); text-decoration: none; font-weight: 600; padding: 5px 0; }
+.exam-session-status > a:hover { text-decoration: underline; }
+.exam-status-dot { width: 6px; height: 6px; background: #a8b8b0; border-radius: 50%; }
+.exam-status-dot.has-results { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.meibography-nav-link .exam-nav-completed { color: var(--accent); margin-left: auto; flex-shrink: 0; }
+.meibography-container .meibography-nav-link.active { background: #edf6f1; color: var(--accent-strong); border-color: #c7e0d3; }
+.meibography-container .meibography-nav-link { transition: background-color .15s, color .15s; border-radius: 12px; }
+.meibography-container .meibography-nav-link:hover { background: #f2f7f4; }
+.meibography-container .meibography-patient-card { border-radius: 13px; background: #f4f8f5; border: 1px solid var(--line); }
+.meibography-container .meibography-patient-select { border-radius: 10px; min-height: 44px; }
+.meibography-container .ocular-active-eye-card { border-radius: 18px; background: #fff; }
+.meibography-container .ocular-analysis-metric-card { transition: border-color .2s; }
+.meibography-container .ocular-analysis-metric-card:hover { border-color: #b2d9c8; }
+.meibography-container .ocular-analysis-metric-value { letter-spacing: -.5px; }
+.meibography-container .meibography-analysis-preview-card { border-radius: 14px; transition: transform .18s, box-shadow .18s; }
+.meibography-container .meibography-analysis-preview-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px #1d493d12; }
+.meibography-container button:focus-visible, .meibography-container a:focus-visible { outline: 3px solid #7bbca8; outline-offset: 3px; }
+.meibography-container .loading-state.is-compact { background: #fff; border-bottom: 1px solid var(--line); }
+.meibography-container .blink-manual-card { background: linear-gradient(120deg,#f0f8f3,#f8faf6); }
+.blink-recording-upload { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 16px; }
+.blink-video-upload { position: relative; display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--accent-strong); padding: 12px 14px; border: 1px solid var(--line); border-radius: 11px; background: #f6faf8; cursor: pointer; }
+.blink-video-upload input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.blink-video-upload:focus-within { outline: 3px solid #7bbca8; outline-offset: 3px; }
+.blink-recording-upload .blink-help-copy { overflow-wrap: anywhere; font-size: 11px; }
+@media (prefers-reduced-motion: reduce) { .meibography-container .meibography-analysis-preview-card:hover { transform: none; } }

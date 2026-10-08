@@ -1,0 +1,207 @@
+/* Shared segmented-control styles used across report, camera, and tear-measure actions. */
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-inline: auto;
+  container-type: inline-size;
+}
+
+.track {
+  --segmented-padding: 6px;
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--segmented-count), minmax(0, 1fr));
+  align-items: stretch;
+  padding: var(--segmented-padding);
+  border-radius: 12px;
+  background: #f4f8f5;
+  border: 1px solid var(--line);
+  box-shadow: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(35, 133, 109, 0.04), transparent 40%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 58%);
+  pointer-events: none;
+}
+
+.indicator {
+  position: absolute;
+  top: var(--segmented-padding);
+  bottom: var(--segmented-padding);
+  left: var(--segmented-padding);
+  width: calc((100% - (var(--segmented-padding) * 2)) / var(--segmented-count));
+  border-radius: 9px;
+  background: linear-gradient(
+    135deg,
+    var(--segmented-indicator-start) 0%,
+    var(--segmented-indicator-middle) 52%,
+    var(--segmented-indicator-end) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -8px 18px rgba(255, 255, 255, 0.06),
+    0 14px 28px var(--segmented-indicator-shadow);
+  transform: translateX(calc(var(--segmented-index) * 100%));
+  transition:
+    transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.26s ease,
+    background 0.28s ease;
+  pointer-events: none;
+}
+
+.button {
+  appearance: none;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 60px;
+  width: 100%;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #527262;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition:
+    color 0.22s ease,
+    transform 0.2s ease,
+    background-color 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.55);
+  color: #233447;
+}
+
+.button:active {
+  transform: scale(0.985);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--segmented-focus-ring);
+}
+
+.active {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(15, 23, 42, 0.18);
+}
+
+.active:hover {
+  background: transparent;
+  color: #ffffff;
+}
+
+.labelWrappedButton {
+  align-items: center;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+.labelWrap {
+  white-space: normal;
+  line-height: 1.15;
+}
+
+@media (max-width: 640px) {
+  .track {
+    --segmented-padding: 5px;
+  }
+
+  .button {
+    min-height: 54px;
+    padding: 0 16px;
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  .label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@container (max-width: 430px) {
+  .track {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 13px;
+  }
+
+  .indicator {
+    display: none;
+  }
+
+  .button {
+    min-height: 56px;
+    justify-content: flex-start;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.64);
+  }
+
+  .button:hover {
+    background: rgba(255, 255, 255, 0.86);
+  }
+
+  .active {
+    background: linear-gradient(
+      135deg,
+      var(--segmented-indicator-start) 0%,
+      var(--segmented-indicator-middle) 52%,
+      var(--segmented-indicator-end) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 14px 28px var(--segmented-indicator-shadow);
+  }
+
+  .active:hover {
+    background: linear-gradient(
+      135deg,
+      var(--segmented-indicator-start) 0%,
+      var(--segmented-indicator-middle) 52%,
+      var(--segmented-indicator-end) 100%
+    );
+  }
+
+  .label {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+    text-align: left;
+  }
+}

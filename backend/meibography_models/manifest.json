@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "name": "best_lower_eyelid_effb5.pth",
+      "size_bytes": 125909467,
+      "sha256": "76826741fa45b9b0137c5e9a62c54f651a720f9d1097af7ec1ea5fbaf7547d71"
+    },
+    {
+      "name": "best_lower_meibo_effb5.pth",
+      "size_bytes": 125908483,
+      "sha256": "55c66fcd16fe5974b6cba96dc5508700530309a397d4a4ab35b16b60d44cf562"
+    },
+    {
+      "name": "best_upper_eyelid_effb5_unet.pth",
+      "size_bytes": 125908483,
+      "sha256": "97df69d92d97c9db2897b99e4768729f3f19949f15c3ab1dc5c97853df002fe2"
+    },
+    {
+      "name": "best_upper_meibo_effb5_unet.pth",
+      "size_bytes": 125906475,
+      "sha256": "e587b680fc4ac7461cdfbfe29acc0800e88f2474e585803c415e8f80b6e48159"
+    }
+  ]
+}

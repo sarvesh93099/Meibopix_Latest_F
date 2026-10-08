@@ -1,0 +1,11 @@
+# Keep local application data out of Cloud Run source archives.
+*.db
+uploads/
+reports/
+.smoke_runtime/
+
+# Omit local Python caches and test artifacts.
+__pycache__/
+**/__pycache__/
+*.py[cod]
+tests/

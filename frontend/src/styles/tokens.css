@@ -1,0 +1,29 @@
+/* Shared visual tokens; system fonts keep first paint fast and work offline. */
+:root {
+  --app-bg: #f5f6f2;
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
+  --surface-soft: #eef3ed;
+  --line: #e0e5dc;
+  --line-strong: #bdd4c8;
+  --text: #1c3530;
+  --text-soft: #52685e;
+  --text-muted: #65766e;
+  --accent: #147d64;
+  --accent-strong: #106450;
+  --accent-soft: #e8f4ef;
+  --accent-soft-2: #cfe9df;
+  --accent-rgb: 35, 133, 109;
+  --brand-deep: #205b4b;
+  --brand-deeper: #184a3d;
+  --brand-darkest: #143e33;
+  --brand-gradient: linear-gradient(120deg, #218c71, #11664f);
+  --brand-gradient-hover: linear-gradient(120deg, #167c61, #10583f);
+  --brand-surface-gradient: linear-gradient(125deg, #ffffff, #f7faf8);
+  --brand-soft-gradient: linear-gradient(125deg, #e5f3ec, #f6f9f7);
+  --brand-soft-gradient-strong: linear-gradient(125deg, #d4ebe0, #eff7f3);
+  --shadow-lg: 0 24px 60px #163b3112;
+  --shadow-md: 0 12px 32px #163b310b;
+  --shadow-sm: 0 4px 15px #163b3107;
+  --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}

@@ -1,0 +1,9 @@
+﻿.panel { width: 100%; padding: 21px; border-radius: 14px; background: #f6faf6; border: 1px solid var(--line); container-type: inline-size; }
+.header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
+.kicker { color: var(--accent); font-size: 10px; font-weight: 650; letter-spacing: 1.3px; }
+.status { margin-left: auto; display: flex; align-items: center; gap: 5px; color: #708b6c; font-size: 10px; }
+.title { color: var(--text); font-size: 21px; font-weight: 600; letter-spacing: -.6px; line-height: 1.4; }
+.description { color: #6c806c; font-size: 12px; line-height: 1.8; margin: 9px 0 18px; }
+.footer { display: flex; align-items: flex-start; gap: 7px; color: #879a80; font-size: 10px; line-height: 1.7; margin-top: 15px; }
+.footer svg { flex-shrink: 0; margin-top: 2px; }
+@media (max-width: 640px) { .panel { padding: 18px; } .description { font-size: 13px; } .footer { font-size: 11px; } }

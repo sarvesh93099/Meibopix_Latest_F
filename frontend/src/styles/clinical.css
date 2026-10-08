@@ -1,0 +1,4477 @@
+/* Assessment-only legacy styles. Loaded on demand; unlayered workspace styles keep precedence. */
+
+@layer legacy {
+
+/* Meibography Page Styles - Moved to grid layout below */
+
+.meibography-sidebar {
+  background: linear-gradient(180deg, #f7fbfd 0%, #eef5f8 58%, #e8f0f4 100%);
+  border-right: 1px solid rgba(196, 211, 222, 0.72);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 12px 0 30px rgba(20, 48, 71, 0.08);
+}
+
+.meibography-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(196, 211, 222, 0.72);
+}
+
+.meibography-header-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.meibography-back-button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(196, 211, 222, 0.9);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.meibography-back-button:hover {
+  background: #ffffff;
+  border-color: rgba(154, 181, 197, 0.9);
+}
+
+.meibography-back-btn {
+  width: 20px;
+  height: 20px;
+  margin-right: 0;
+  cursor: pointer;
+  color: #4d6a7f;
+  transition: color 0.2s;
+}
+
+.meibography-back-btn:hover {
+  color: #224a67;
+}
+
+.meibography-header-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meibography-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--brand-deep);
+  letter-spacing: -0.02em;
+}
+
+.meibography-title-caption {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6f889b;
+}
+
+.meibography-patient-section {
+  margin-bottom: 16px;
+}
+
+.meibography-patient-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.meibography-patient-label-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #35556c;
+}
+
+.meibography-add-patient-link {
+  font-size: 14px;
+  color: #3d84b8;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 600;
+}
+
+.meibography-add-patient-link:hover {
+  color: #2f6c95;
+}
+
+.meibography-patient-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d8e6f0;
+  border-radius: 16px;
+  font-size: 14px;
+  background: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  color: #264156;
+}
+
+.meibography-patient-select:focus {
+  outline: none;
+  border-color: #6eb4e3;
+  box-shadow: 0 0 0 4px rgba(110, 180, 227, 0.15);
+}
+
+.meibography-patient-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f9fc 100%);
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  border: 1px solid #d7e4ee;
+  box-shadow: 0 10px 22px rgba(82, 123, 152, 0.08);
+}
+
+.meibography-patient-avatar {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #dce5ff, #9fb4ff);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.meibography-patient-info {
+  margin-left: 12px;
+}
+
+.meibography-patient-name {
+  font-weight: 700;
+  color: var(--brand-deep);
+  font-size: 15px;
+}
+
+.meibography-patient-details {
+  font-size: 13px;
+  color: #6f889b;
+  margin-top: 2px;
+}
+
+.meibography-nav {
+  flex: 1;
+  padding: 12px 14px;
+}
+
+.meibography-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.meibography-nav-item {
+  margin-bottom: 4px;
+}
+
+.meibography-nav-link {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-soft);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+.meibography-nav-button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.meibography-nav-link:hover {
+  background: #f5f7ff;
+  color: var(--accent-strong);
+  border-color: var(--line);
+}
+
+.meibography-nav-link.active {
+  background: var(--brand-gradient);
+  color: #ffffff;
+  font-weight: 700;
+  border-color: transparent;
+  box-shadow: 0 14px 28px rgba(17, 33, 108, 0.16);
+}
+
+.meibography-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.meibography-top-header {
+  background: rgba(247, 250, 252, 0.86);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(196, 211, 222, 0.72);
+  padding: 18px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 24px rgba(20, 48, 71, 0.05);
+}
+
+.meibography-action-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  padding: 14px 24px 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(196, 211, 222, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  overflow-x: auto;
+}
+
+.meibography-review-toolbar {
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: visible;
+}
+
+.meibography-capture-segmented-control {
+  flex: 0 1 520px;
+}
+
+.meibography-review-segmented-control {
+  flex: 1 1 720px;
+  max-width: 780px;
+  min-width: 0;
+}
+
+.meibography-tear-segmented-control {
+  flex: 1 1 520px;
+  max-width: 560px;
+}
+
+.meibography-blink-segmented-control {
+  flex: 1 1 860px;
+  max-width: 920px;
+}
+
+.meibography-review-button-group {
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  border-radius: 0;
+  background: var(--brand-gradient);
+  border: 1px solid rgba(124, 186, 227, 0.46);
+  box-shadow: 0 10px 24px rgba(73, 116, 153, 0.18);
+}
+
+.meibography-review-button-divider {
+  width: 2px;
+  align-self: stretch;
+  flex: 0 0 2px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.meibography-review-button-group > .meibography-review-btn,
+.meibography-review-button-group > .meibography-capture-btn-overlay,
+.meibography-review-button-group > .meibography-manual-btn-overlay {
+  min-width: 190px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  box-shadow: none;
+  position: relative;
+}
+
+.meibography-review-button-group > .meibography-review-btn:hover,
+.meibography-review-button-group > .meibography-capture-btn-overlay:hover,
+.meibography-review-button-group > .meibography-manual-btn-overlay:hover,
+.meibography-review-button-group > .meibography-manual-btn-overlay.active {
+  background: #ffffff;
+  color: #2048b8;
+  box-shadow: none;
+  transform: none;
+}
+
+.meibography-review-button-group > .meibography-review-btn:disabled,
+.meibography-review-button-group > .meibography-capture-btn-overlay:disabled,
+.meibography-review-button-group > .meibography-manual-btn-overlay:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.meibography-bottom-toolbar {
+  width: min(100%, 1100px);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: -1px;
+  padding: 14px 18px 18px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(196, 211, 222, 0.85);
+  border-bottom: 1px solid rgba(196, 211, 222, 0.85);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 20px 36px rgba(20, 48, 71, 0.12);
+  position: sticky;
+  top: 14px;
+  z-index: 140;
+  align-self: center;
+  overflow: visible;
+  scrollbar-width: none;
+}
+
+.meibography-bottom-toolbar::-webkit-scrollbar {
+  display: none;
+}
+
+.meibography-analysis-preview-grid {
+  width: min(100%, 560px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.tear-meniscus-preview-grid {
+  width: min(100%, 380px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.meibography-workflow-status {
+  width: min(100%, 560px);
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid #d7e5ef;
+  background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
+  box-shadow: 0 10px 22px rgba(20, 48, 71, 0.08);
+}
+
+.meibography-workflow-status.detecting-eyelid,
+.meibography-workflow-status.detecting-glands,
+.meibography-workflow-status.analyzing-results,
+.meibography-workflow-status.auto-enhancing {
+  border-color: #b9d9ef;
+  background: linear-gradient(180deg, #fafdff 0%, #edf7ff 100%);
+}
+
+.meibography-workflow-status.complete,
+.meibography-workflow-status.ready {
+  border-color: #cfe4d6;
+  background: linear-gradient(180deg, #fbfffd 0%, #eefbf4 100%);
+}
+
+.meibography-workflow-status-label {
+  color: #234e70;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.meibography-workflow-status-detail {
+  margin-top: 4px;
+  color: #5d7487;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.meibography-analysis-preview-card {
+  appearance: none;
+  border: 1px solid #d7e5f0;
+  padding: 0;
+  text-align: left;
+  cursor: zoom-in;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fafdff 0%, #edf6fd 100%);
+  box-shadow: 0 12px 26px rgba(20, 48, 71, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.meibography-analysis-preview-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(20, 48, 71, 0.1);
+}
+
+.meibography-analysis-preview-card.is-active {
+  border-color: #5fa8dd;
+  box-shadow: 0 0 0 2px rgba(95, 168, 221, 0.18), 0 18px 32px rgba(54, 100, 139, 0.16);
+}
+
+.meibography-analysis-preview-card.is-complete {
+  border-color: #9ac7a3;
+}
+
+.meibography-analysis-preview-card.is-pending {
+  opacity: 0.92;
+}
+
+.meibography-analysis-preview-title {
+  padding: 10px 12px;
+  border-bottom: 1px solid #dce8f2;
+  color: #35566f;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.meibography-analysis-preview-badge {
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #e2ebf2;
+  color: #5d7487;
+}
+
+.meibography-analysis-preview-badge.is-active {
+  background: #dff0ff;
+  color: #1d5f8f;
+}
+
+.meibography-analysis-preview-badge.is-complete {
+  background: #e3f4e5;
+  color: #2d6d39;
+}
+
+.meibography-analysis-preview-badge.is-pending {
+  background: #eef3f7;
+  color: #70879a;
+}
+
+.meibography-analysis-preview-image {
+  display: block;
+  width: 100%;
+  height: 132px;
+  object-fit: contain;
+  background: radial-gradient(circle at top, #eef7ff 0%, #d9e7f2 100%);
+  padding: 8px;
+}
+
+.meibography-analysis-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(8, 20, 31, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.meibography-analysis-modal-dialog {
+  width: min(100%, 980px);
+  max-height: calc(100vh - 48px);
+  padding: 18px;
+  border-radius: 24px;
+  background: #f8fcff;
+  box-shadow: 0 28px 56px rgba(6, 23, 35, 0.32);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meibography-analysis-modal-close {
+  align-self: flex-end;
+  border: 1px solid #c8d8e4;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #234e70;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.meibography-analysis-modal-title {
+  color: #234e70;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.meibography-analysis-modal-image {
+  width: 100%;
+  max-height: calc(100vh - 180px);
+  object-fit: contain;
+  border-radius: 18px;
+  background: #dbe8f2;
+}
+
+.meibography-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meibography-logo {
+  width: 46px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  margin-right: 12px;
+}
+
+.meibography-brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.06em;
+}
+
+.meibography-brand-copy {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meibography-brand-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+
+.meibography-user-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.meibography-bell-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.meibography-bell-icon:hover {
+  color: var(--accent-strong);
+}
+
+.meibography-user-avatar {
+  width: 32px;
+  height: 32px;
+  background: var(--brand-gradient);
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.meibography-greeting {
+  font-size: 14px;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+.meibography-settings-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.meibography-settings-icon {
+  width: 24px;
+  height: 24px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.meibography-settings-icon:hover {
+  color: #374151;
+}
+
+.meibography-settings-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 280px;
+  animation: slideInUp 0.3s ease-out;
+}
+
+.meibography-settings-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.meibography-settings-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.meibography-settings-content {
+  padding: 20px;
+}
+
+.meibography-setting-item {
+  margin-bottom: 20px;
+}
+
+.meibography-setting-item:last-child {
+  margin-bottom: 0;
+}
+
+.meibography-setting-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.meibography-setting-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meibography-setting-value {
+  font-size: 13px;
+  color: #6b7280;
+  min-width: 30px;
+  text-align: center;
+}
+
+.meibography-setting-slider {
+  width: 120px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.meibography-content {
+  flex: 1;
+  padding: 0;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.meibography-live-workspace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+}
+
+.meibography-camera-eye-selector {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  z-index: 130;
+  width: min(calc(100% - 120px), 420px);
+  transform: translateX(-50%);
+  padding: 10px;
+  border-radius: 22px;
+  background: rgba(10, 24, 36, 0.38);
+  border: 1px solid rgba(168, 195, 216, 0.28);
+  box-shadow: 0 18px 30px rgba(3, 12, 19, 0.28);
+  backdrop-filter: blur(16px);
+}
+
+/* Full Page Camera Container */
+.meibography-camera-container-full {
+  position: relative;
+  width: min(100%, 1100px);
+  height: clamp(360px, 62vh, 680px);
+  min-height: 0;
+  background: linear-gradient(180deg, #122231 0%, #08141f 100%);
+  border-radius: 28px 28px 0 0;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(6, 23, 35, 0.24);
+}
+
+.meibography-camera-preview-full {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.meibography-review-stage {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+}
+
+.meibography-camera-img-full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meibography-review-image {
+  object-fit: contain;
+  background: #08141f;
+}
+
+.meibography-tear-zoom-controls {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 120;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(11, 26, 38, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 14px 28px rgba(3, 12, 19, 0.26);
+  backdrop-filter: blur(12px);
+}
+
+.meibography-tear-zoom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(151, 205, 238, 0.24);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #eff6fb;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.meibography-tear-zoom-btn:hover {
+  background: rgba(95, 165, 215, 0.18);
+  border-color: rgba(151, 205, 238, 0.4);
+  transform: translateY(-1px);
+}
+
+.meibography-tear-zoom-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.meibography-tear-zoom-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.meibography-tear-zoom-value {
+  min-width: 56px;
+  text-align: center;
+  color: #f8fbfd;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Overlay Controls */
+.meibography-overlay-controls {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  z-index: 100;
+  align-items: center;
+}
+
+.meibography-camera-btn-overlay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(205, 216, 255, 0.94);
+  color: var(--brand-deeper);
+  border: 1px solid rgba(173, 190, 255, 0.55);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.meibography-camera-btn-overlay:hover {
+  background: rgba(66, 134, 182, 0.96);
+  border-color: rgba(151, 205, 238, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.meibography-camera-btn-overlay:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.meibography-capture-btn-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.meibography-capture-btn-overlay svg {
+  position: static;
+  left: auto;
+  top: auto;
+  transform: none;
+  flex: 0 0 auto;
+}
+
+.meibography-capture-btn-overlay span {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+  flex: 0 1 auto;
+}
+
+.meibography-capture-btn-overlay:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.meibography-manual-btn-overlay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--brand-gradient);
+  color: white;
+  border: 1px solid rgba(124, 186, 227, 0.46);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.meibography-manual-btn-overlay:hover {
+  background: var(--brand-gradient-hover);
+  border-color: rgba(124, 186, 227, 0.68);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.meibography-manual-btn-overlay.active {
+  background: var(--brand-gradient);
+  border-color: rgba(151, 205, 238, 0.72);
+}
+
+/* Settings Inline */
+.meibography-settings-container-inline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.settings-inline-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meibography-settings-icon-inline {
+  width: 40px;
+  height: 40px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meibography-settings-icon-inline svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
+}
+
+.meibography-settings-icon-inline:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.settings-inline-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  min-width: 150px;
+}
+
+.inline-setting-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inline-setting-icon {
+  width: 16px;
+  height: 16px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.inline-setting-label {
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 15px;
+  flex-shrink: 0;
+}
+
+.inline-setting-value {
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  min-width: 25px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.inline-setting-slider {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  min-width: 80px;
+}
+
+.inline-setting-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.inline-setting-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.meibography-settings-dropdown-inline {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  min-width: 280px;
+  animation: slideInUp 0.3s ease-out;
+  backdrop-filter: blur(10px);
+}
+
+.meibography-settings-header {
+  padding: 16px 16px 8px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.meibography-settings-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.meibography-settings-content {
+  padding: 16px;
+}
+
+.meibography-setting-item {
+  margin-bottom: 20px;
+}
+
+.meibography-setting-item:last-child {
+  margin-bottom: 0;
+}
+
+.meibography-setting-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.meibography-setting-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meibography-setting-value {
+  min-width: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  text-align: right;
+}
+
+.meibography-setting-slider {
+  flex: 1;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.meibography-setting-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.meibography-setting-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.meibography-eye-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.meibography-eye-tabs-container {
+  display: inline-flex;
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.meibography-eye-tab {
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.meibography-eye-tab:hover {
+  color: #374151;
+}
+
+.meibography-eye-tab.active {
+  background: white;
+  color: #2563eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.meibography-eye-status {
+  font-weight: normal;
+}
+
+.meibography-status-pending {
+  color: #f59e0b;
+}
+
+.meibography-status-completed {
+  color: #10b981;
+}
+
+.meibography-camera-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 32px;
+}
+
+.meibography-control-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meibography-control-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.meibography-slider {
+  width: 96px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.meibography-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ef4444;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.meibography-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ef4444;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.meibography-lid-toggle {
+  display: flex;
+  background: #f3f4f6;
+  border-radius: 20px;
+  padding: 2px;
+}
+
+.meibography-lid-btn {
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.meibography-lid-btn:not(.active) {
+  background: transparent;
+  color: #6b7280;
+}
+
+.meibography-lid-btn.active {
+  background: #2563eb;
+  color: white;
+}
+
+.meibography-action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.meibography-capture-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.meibography-capture-btn:hover {
+  background: #1d4ed8;
+}
+
+.meibography-manual-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.meibography-manual-btn:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.meibography-camera-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.meibography-camera-preview {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.meibography-camera-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meibography-camera-brackets {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 2px solid white;
+}
+
+.meibography-bracket-tl {
+  top: 16px;
+  left: 16px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.meibography-bracket-tr {
+  top: 16px;
+  right: 16px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.meibography-bracket-bl {
+  bottom: 16px;
+  left: 16px;
+  border-right: none;
+  border-top: none;
+}
+
+.meibography-bracket-br {
+  bottom: 16px;
+  right: 16px;
+  border-left: none;
+  border-top: none;
+}
+
+.meibography-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #111827;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slideInUp 0.3s ease-out;
+}
+
+.meibography-additional-controls {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.meibography-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 16px 0;
+}
+
+.meibography-capture-history {
+  flex: 1;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.meibography-capture-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  transition: all 0.2s;
+}
+
+.meibography-capture-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.meibography-capture-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.meibography-capture-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.meibography-capture-eye {
+  background: #2563eb;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.meibography-capture-lid {
+  background: #6b7280;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.meibography-capture-time {
+  color: #6b7280;
+  font-size: 11px;
+}
+
+.meibography-capture-settings {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.meibography-capture-settings span {
+  margin-right: 12px;
+}
+
+/* Ocular Analysis Panel Styles */
+.ocular-analysis-panel {
+  width: 340px;
+  background: #f7f8fb;
+  border-left: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.ocular-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.ocular-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px 0;
+}
+
+.ocular-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.ocular-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ocular-eye-section {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ocular-eye-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.ocular-eye-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.ocular-eye-toggle:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ocular-eye-toggle.ocular-eye-selected {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.ocular-eye-icon {
+  width: 18px;
+  height: 18px;
+  color: #2563eb;
+}
+
+.ocular-eye-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ocular-status-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ocular-status-tile {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.ocular-status-button {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ocular-status-button:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ocular-status-button.ocular-status-selected {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.ocular-status-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  text-align: center;
+}
+
+.ocular-status-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.ocular-status-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ocular-status-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ocular-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ocular-status-blue {
+  background: #2563eb;
+}
+
+.ocular-status-green {
+  background: #10b981;
+}
+
+.ocular-images-section {
+  margin-top: 16px;
+}
+
+.ocular-images-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.ocular-images-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ocular-image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ocular-image-thumbnail {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  border: 2px dashed #d1d5db;
+  overflow: hidden;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ocular-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ocular-image-caption {
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.ocular-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
+}
+
+.ocular-status-left {
+  display: flex;
+  align-items: center;
+}
+
+.ocular-status-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ocular-status-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ocular-status-online {
+  color: #10b981;
+}
+
+/* Updated Meibography Container for 3-column layout */
+.meibography-container {
+  display: grid;
+  grid-template-columns: 280px 1fr 340px;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(180deg, #f8fcff 0%, #eef6fb 100%);
+}
+
+.meibography-container.meibography-container-no-side-panel {
+  grid-template-columns: 280px 1fr;
+}
+
+.meibography-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .meibography-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+  
+  .meibography-sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .ocular-analysis-panel {
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .meibography-camera-controls {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .meibography-camera-preview {
+    width: 100%;
+    max-width: 480px;
+    height: 360px;
+  }
+
+  .meibography-additional-controls {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .meibography-top-header {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .meibography-live-workspace {
+    padding: 16px;
+  }
+
+  .meibography-camera-container-full {
+    height: clamp(320px, 54vh, 520px);
+  }
+
+  .meibography-analysis-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 640px) {
+  .meibography-header-title {
+    align-items: flex-start;
+  }
+
+  .meibography-title {
+    font-size: 24px;
+  }
+
+  .meibography-brand-copy {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .meibography-user-section {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .meibography-camera-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .meibography-control-group {
+    justify-content: space-between;
+  }
+  
+  .meibography-action-buttons {
+    justify-content: center;
+  }
+
+  .meibography-additional-controls {
+    margin-top: 16px;
+  }
+}
+
+/* Capture workflow additions */
+.meibography-camera-error {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(185, 28, 28, 0.9);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  z-index: 120;
+}
+
+.meibography-overlay-controls {
+  flex-wrap: wrap;
+  justify-content: center;
+  width: min(1100px, calc(100% - 32px));
+}
+
+.meibography-selection-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 8px 10px;
+  backdrop-filter: blur(8px);
+}
+
+.meibography-selection-label {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.meibography-selection-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.meibography-selection-btn {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.meibography-selection-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.meibography-selection-btn.active {
+  background: rgba(37, 99, 235, 0.8);
+  border-color: rgba(147, 197, 253, 0.9);
+}
+
+.meibography-review-controls {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 120;
+  background: rgba(13, 30, 46, 0.64);
+  border: 1px solid rgba(154, 198, 226, 0.24);
+  border-radius: 14px;
+  padding: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.meibography-auto-enhance-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.75);
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.meibography-auto-enhance-toggle input {
+  accent-color: #38bdf8;
+}
+
+.meibography-review-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.meibography-review-btn.delete {
+  background: var(--brand-gradient);
+}
+
+.meibography-review-btn.analyze {
+  background: var(--brand-gradient);
+}
+
+.meibography-review-btn.save {
+  background: var(--brand-gradient);
+}
+
+.ocular-image-thumbnail.is-empty {
+  border-style: dashed;
+}
+
+.ocular-empty-placeholder {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .meibography-selection-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .meibography-selection-buttons {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+}
+
+.meibography-active-target-pill {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: 18px;
+  border: 1px solid #d9e7f1;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbfe 100%);
+  color: #234e70;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  min-height: 54px;
+  box-shadow: 0 10px 22px rgba(98, 153, 194, 0.12);
+}
+
+.meibography-preview-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.meibography-annotation-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  cursor: crosshair;
+}
+
+.meibography-annotation-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.meibography-annotation-hint {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Ocular panel layout refactor: top eye toggle + single active-eye section */
+.ocular-content {
+  gap: 14px;
+}
+
+.ocular-eye-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ocular-eye-selector-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.42);
+  border: 2px solid rgba(95, 165, 215, 0.95);
+  border-radius: 16px;
+  color: #ffffff;
+  padding: 14px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 22px rgba(18, 55, 88, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ocular-eye-selector-btn:hover {
+  background: rgba(255, 255, 255, 0.52);
+  border-color: #9fd1f2;
+  color: #ffffff;
+}
+
+.ocular-eye-selector-btn.active {
+  background: rgba(255, 255, 255, 0.62);
+  border-color: #5fa5d7;
+  color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(95, 165, 215, 0.2), 0 12px 24px rgba(45, 95, 138, 0.16);
+}
+
+.ocular-active-eye-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcff 100%);
+  border: 1px solid #dce8f2;
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 14px 30px rgba(73, 116, 153, 0.1);
+}
+
+.ocular-active-eye-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ocular-lid-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.ocular-lid-btn {
+  width: 100%;
+  min-height: 70px;
+  background: #ffffff;
+  border: 1px solid #dce8f2;
+  border-radius: 18px;
+  color: #2f4b61;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.ocular-lid-btn:hover {
+  background: #f6fbfe;
+  border-color: #c8deed;
+}
+
+.ocular-lid-btn.active {
+  border-color: #5fa5d7;
+  background: linear-gradient(135deg, #edf7ff, #f8fcff);
+  color: #225f88;
+  box-shadow: 0 10px 20px rgba(98, 153, 194, 0.16);
+}
+
+.ocular-images-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ocular-image-thumbnail {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+}
+
+.ocular-image-caption {
+  font-size: 14px;
+  color: #527089;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .meibography-active-target-pill {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Meibography mode polish */
+.meibography-overlay-controls {
+  bottom: max(30px, calc(env(safe-area-inset-bottom) + 6px));
+  gap: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(13, 30, 46, 0.62);
+  border: 1px solid rgba(154, 198, 226, 0.24);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.35);
+}
+
+.meibography-active-target-pill {
+  background: #ffffff;
+  border-color: #d7e8f3;
+  color: #234e70;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  font-size: 11px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  min-width: auto;
+  box-shadow: 0 8px 18px rgba(98, 153, 194, 0.1);
+}
+
+.meibography-camera-btn-overlay,
+.meibography-capture-btn-overlay,
+.meibography-manual-btn-overlay {
+  min-height: 46px;
+  border-radius: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  padding: 0 18px;
+  box-shadow: 0 8px 18px rgba(73, 116, 153, 0.14);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.meibography-camera-btn-overlay {
+  background: var(--brand-soft-gradient-strong);
+  border-color: rgba(133, 191, 230, 0.64);
+}
+
+.meibography-camera-btn-overlay:hover {
+  background: var(--brand-soft-gradient);
+  border-color: rgba(133, 191, 230, 0.8);
+  color: var(--accent-strong);
+}
+
+.meibography-capture-btn-overlay {
+  background: var(--brand-gradient);
+  border-color: rgba(124, 186, 227, 0.64);
+}
+
+.meibography-capture-btn-overlay:hover {
+  background: var(--brand-gradient-hover);
+  border-color: rgba(124, 186, 227, 0.82);
+  color: #ffffff;
+}
+
+.meibography-manual-btn-overlay {
+  background: var(--brand-gradient);
+  border-color: rgba(109, 150, 181, 0.38);
+}
+
+.meibography-manual-btn-overlay:hover {
+  background: var(--brand-gradient-hover);
+  border-color: rgba(109, 150, 181, 0.56);
+  color: #ffffff;
+}
+
+.meibography-manual-btn-overlay.active {
+  background: var(--brand-gradient);
+  border-color: rgba(151, 205, 238, 0.72);
+}
+
+.meibography-settings-icon-inline {
+  border-radius: 14px;
+  min-width: 46px;
+  min-height: 46px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9fc 100%);
+  border: 1px solid #d7e5ef;
+  color: #6f8ca1;
+  box-shadow: 0 8px 18px rgba(98, 153, 194, 0.1);
+  flex: 0 0 auto;
+}
+
+.meibography-settings-icon-inline:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #edf6fb 100%);
+  border-color: #c6dceb;
+  color: #35556c;
+  transform: translateY(-1px);
+}
+
+.meibography-review-controls {
+  bottom: max(30px, calc(env(safe-area-inset-bottom) + 6px));
+  gap: 10px;
+  background: rgba(13, 30, 46, 0.62);
+  border: 1px solid rgba(154, 198, 226, 0.24);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.meibography-auto-enhance-toggle {
+  min-height: 42px;
+}
+
+.meibography-review-btn {
+  min-width: 120px;
+  min-height: 42px;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.meibography-review-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.3);
+}
+
+.ocular-analysis-panel {
+  background: linear-gradient(180deg, #f8fcff 0%, #eef6fb 100%);
+  padding: 20px 18px;
+}
+
+.ocular-active-eye-card {
+  border-color: #dce8f2;
+  box-shadow: 0 16px 34px rgba(73, 116, 153, 0.1);
+}
+
+.ocular-eye-selector-btn {
+  min-height: 54px;
+}
+
+.ocular-images-label,
+.ocular-analysis-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6d879a;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.ocular-image-thumbnail {
+  border-width: 1.5px;
+  border-color: #d2e1ec;
+  background: linear-gradient(180deg, #fafdff 0%, #f1f8fc 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.ocular-image-thumbnail.is-empty {
+  border-style: dashed;
+}
+
+.ocular-empty-placeholder {
+  color: #91a6b6;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ocular-analysis-section {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid #d7e5ef;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.ocular-analysis-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ocular-analysis-subtitle {
+  margin-top: 6px;
+  color: #6f879a;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ocular-analyze-btn {
+  border: none;
+  border-radius: 14px;
+  min-width: 104px;
+  min-height: 42px;
+  padding: 0 16px;
+  background: var(--brand-gradient);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.ocular-analyze-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(20, 48, 71, 0.2);
+}
+
+.ocular-analyze-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.ocular-analysis-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ocular-analysis-metric-card {
+  border: 1px solid #d9e7f1;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #ffffff;
+}
+
+.ocular-analysis-metric-label {
+  display: block;
+  color: #7890a2;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.ocular-analysis-metric-value {
+  display: block;
+  margin-top: 6px;
+  color: #1f3e5a;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.ocular-analysis-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.ocular-analysis-result-label {
+  color: #5d7487;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ocular-analysis-result-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.ocular-analysis-result-badge.has-result {
+  background: #e9f4ff;
+  color: #2b6a98;
+}
+
+.ocular-analysis-result-badge.is-idle {
+  background: #f2f6fa;
+  color: #70879a;
+}
+
+.ocular-analysis-summary {
+  margin-top: 12px;
+  border: 1px solid #e1ebf3;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #fbfdff;
+  color: #60788b;
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.ocular-tear-preview {
+  margin-top: 14px;
+  border: 1px solid #dce8f2;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f5fbff;
+}
+
+.ocular-tear-preview-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ocular-analysis-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ocular-analysis-preview-card {
+  border: 1px solid #dce8f2;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f5fbff;
+}
+
+.ocular-analysis-preview-title {
+  padding: 10px 12px;
+  border-bottom: 1px solid #dce8f2;
+  color: #5d7487;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ocular-analysis-preview-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #dbe8f2;
+}
+
+.ocular-tear-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.blink-counter-workspace {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.blink-counter-card {
+  width: min(100%, 920px);
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid #d8e6f0;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+  box-shadow: 0 20px 46px rgba(62, 117, 154, 0.12);
+}
+
+.blink-counter-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.blink-counter-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #18384d;
+}
+
+.blink-counter-subtitle {
+  margin: 0;
+  color: #5c788d;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.blink-counter-preview-shell {
+  position: relative;
+  min-height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blink-counter-preview-video {
+  display: block;
+  width: 100%;
+  max-height: 560px;
+  background: transparent;
+  object-fit: cover;
+  filter: none !important;
+  -webkit-filter: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  backdrop-filter: none !important;
+}
+
+.blink-counter-placeholder {
+  position: absolute;
+  inset: auto 24px 24px 24px;
+  margin: 0 auto;
+  max-width: 340px;
+  padding: 24px;
+  text-align: center;
+  color: #567388;
+  font-size: 15px;
+  line-height: 1.6;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(207, 225, 237, 0.9);
+  backdrop-filter: blur(6px);
+}
+
+.blink-counter-recording-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  box-shadow: none;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+.blink-counter-hud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 24px 28px;
+  pointer-events: none;
+  background: transparent;
+}
+
+.blink-counter-hud-top {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.blink-counter-hud-label,
+.blink-counter-hud-mode {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.blink-counter-hud-mode {
+  justify-self: end;
+}
+
+.blink-counter-hud-timer {
+  justify-self: center;
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.blink-counter-hud-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.blink-counter-hud-count {
+  color: #ff6420;
+  font-size: clamp(86px, 14vw, 132px);
+  line-height: 0.88;
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  text-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+}
+
+.blink-counter-hud-bpm {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+}
+
+.blink-counter-file-meta {
+  margin-top: 14px;
+  color: #617e92;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.blink-counter-inline-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.blink-counter-inline-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #f5faff;
+  border: 1px solid #d9e8f3;
+}
+
+.blink-counter-inline-metric span {
+  color: #68849a;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.blink-counter-inline-metric strong {
+  color: #1d425d;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.blink-counter-panel .ocular-analysis-summary {
+  min-height: 116px;
+}
+
+.clinical-module-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 32px;
+  background:
+    radial-gradient(circle at top right, rgba(var(--accent-rgb), 0.12), transparent 24%),
+    linear-gradient(180deg, #f8faff 0%, var(--app-bg) 100%);
+}
+
+.clinical-module-stage-card {
+  width: min(720px, 100%);
+  padding: 32px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(196, 211, 222, 0.74);
+  box-shadow: var(--shadow-lg);
+}
+
+.clinical-module-stage-label {
+  display: inline-flex;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.clinical-module-stage-title {
+  color: var(--text);
+  font-size: 30px;
+  letter-spacing: -0.03em;
+}
+
+.clinical-module-stage-subtitle {
+  margin-top: 12px;
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.clinical-test-panel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 22px;
+  background: linear-gradient(180deg, #f8faff 0%, var(--app-bg) 100%);
+  overflow: auto;
+}
+
+.clinical-test-panel-centered {
+  align-items: flex-start;
+}
+
+.clinical-test-card {
+  width: min(980px, 100%);
+  padding: 24px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(196, 211, 222, 0.78);
+  box-shadow: var(--shadow-lg);
+}
+
+.clinical-test-card-centered {
+  width: min(980px, 100%);
+  max-width: 100%;
+}
+
+.clinical-test-card-bulbar {
+  width: min(1280px, 100%);
+  padding: 22px 28px 28px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, #ffffff 100%);
+  border: 1px solid rgba(201, 212, 236, 0.96);
+  box-shadow:
+    0 28px 60px rgba(76, 102, 156, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
+}
+
+.clinical-test-card.clinical-test-card-deq {
+  width: min(1280px, 100%);
+}
+
+.clinical-test-card.clinical-test-card-osdi {
+  width: min(1460px, 100%);
+}
+
+.clinical-test-header {
+  margin-bottom: 18px;
+}
+
+.clinical-test-label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.clinical-test-title {
+  margin-top: 8px;
+  color: var(--text);
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.clinical-test-subtitle {
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.clinical-test-summary-grid,
+.clinical-test-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.clinical-test-fields-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.clinical-test-summary-card,
+.clinical-test-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 18px;
+  background: #f7fafc;
+  border: 1px solid var(--line);
+}
+
+.clinical-test-summary-card span,
+.clinical-test-field label,
+.clinical-test-question-label {
+  color: var(--text-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.clinical-test-summary-card strong {
+  color: var(--text);
+  font-size: 20px;
+}
+
+.clinical-test-summary-grid-wide {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.clinical-test-eye-toggle {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: #eef4f7;
+  border: 1px solid var(--line);
+}
+
+.clinical-test-eye-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transition: none;
+}
+
+.clinical-test-eye-btn.active {
+  background: var(--brand-gradient);
+  color: #ffffff;
+}
+
+.clinical-test-question-list {
+  display: grid;
+  gap: 12px;
+}
+
+.clinical-test-question {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: #f7fafc;
+  border: 1px solid var(--line);
+}
+
+.clinical-test-input,
+.clinical-test-select,
+.clinical-test-textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+.clinical-test-textarea {
+  min-height: 120px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.clinical-test-textarea.small {
+  min-height: 92px;
+}
+
+.clinical-test-input:focus,
+.clinical-test-select:focus,
+.clinical-test-textarea:focus {
+  border-color: rgba(var(--accent-rgb), 0.45);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.12);
+}
+
+.clinical-test-note {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent-strong);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.clinical-test-table {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.clinical-test-table-header,
+.clinical-test-table-row {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, minmax(0, 0.72fr)) 0.9fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.clinical-test-table-header {
+  padding: 0 6px;
+  color: var(--text-soft);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.clinical-test-table-row {
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: #f7fafc;
+  border: 1px solid var(--line);
+}
+
+.clinical-test-table-label,
+.clinical-test-table-metric {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.clinical-test-table-input {
+  min-height: 42px;
+  padding: 0 10px;
+}
+
+.clinical-test-summary-block {
+  margin-bottom: 18px;
+}
+
+.clinical-test-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.posterior-frontend-layout {
+  display: grid;
+  gap: 22px;
+}
+
+.posterior-frontend-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(209, 220, 241, 0.92);
+  box-shadow: 0 16px 30px rgba(66, 90, 139, 0.08);
+}
+
+.posterior-frontend-form-card {
+  display: grid;
+  gap: 18px;
+}
+
+.posterior-frontend-letterhead {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.posterior-frontend-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.posterior-frontend-letterhead-copy {
+  display: grid;
+  gap: 4px;
+  color: #2b456b;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.posterior-frontend-letterhead-copy p,
+.posterior-frontend-footer p {
+  margin: 0;
+}
+
+.posterior-frontend-title {
+  margin: 0 0 4px;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.posterior-frontend-link {
+  margin-top: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #2d63ff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.posterior-frontend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.posterior-frontend-field {
+  display: grid;
+  gap: 10px;
+}
+
+.posterior-frontend-field label {
+  color: #8b97a7;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.posterior-frontend-field-wide {
+  grid-column: 1 / -1;
+}
+
+.posterior-frontend-input {
+  min-height: 50px;
+  border-color: #bfd0ff;
+}
+
+.posterior-frontend-textarea {
+  min-height: 150px;
+  border-color: #bfd0ff;
+}
+
+.posterior-frontend-textarea-short {
+  min-height: 110px;
+}
+
+.posterior-frontend-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.posterior-frontend-upload-slot {
+  position: relative;
+  min-height: 260px;
+  padding: 0;
+  border: 1px dashed #d4dce8;
+  border-radius: 18px;
+  background: #ffffff;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.posterior-frontend-upload-slot:hover {
+  border-color: #9dbdf4;
+  box-shadow: 0 12px 22px rgba(66, 90, 139, 0.08);
+}
+
+.posterior-frontend-upload-slot.has-image {
+  border-style: solid;
+}
+
+.posterior-frontend-upload-input {
+  display: none;
+}
+
+.posterior-frontend-upload-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.posterior-frontend-upload-placeholder {
+  height: 100%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 10px;
+  color: #97a4b4;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.posterior-frontend-upload-art,
+.posterior-frontend-upload-icon {
+  color: #a8b1c2;
+}
+
+.posterior-frontend-upload-art {
+  width: 58px;
+  height: 58px;
+}
+
+.posterior-frontend-upload-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.posterior-frontend-add-btn {
+  width: 100%;
+  margin-top: 18px;
+  min-height: 58px;
+  border: 1px solid #d6e1ef;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #324d71;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.posterior-frontend-add-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.posterior-frontend-note {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f3f5f9;
+  color: #6b7f96;
+  font-size: 14px;
+}
+
+.posterior-frontend-footer {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  display: grid;
+  gap: 4px;
+  text-align: center;
+  color: #2b456b;
+}
+
+@media (max-width: 900px) {
+  .posterior-frontend-grid,
+  .posterior-frontend-upload-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .posterior-frontend-letterhead {
+    flex-direction: column;
+  }
+}
+
+.contrast-setup {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  min-height: 420px;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 44px 20px 32px;
+}
+
+.contrast-setup-copy {
+  max-width: 820px;
+  margin: 0;
+  color: var(--text);
+  text-align: center;
+  font-size: clamp(18px, 1.45vw, 26px);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.contrast-setup-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 24px;
+}
+
+.contrast-setup-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: clamp(15px, 1.05vw, 18px);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.contrast-setup-option input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.contrast-setup-actions {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+}
+
+.contrast-setup-proceed {
+  min-width: 140px;
+  min-height: 52px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 12px;
+  background: var(--brand-gradient);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(17, 33, 108, 0.16);
+}
+
+.contrast-setup-skip {
+  border: none;
+  background: transparent;
+  color: var(--accent-strong);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.contrast-setup-proceed:hover,
+.contrast-setup-skip:hover {
+  filter: brightness(0.96);
+}
+
+.bulbar-redness-reference {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.bulbar-redness-reference-shell {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  width: min(1180px, 100%);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.bulbar-redness-control-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.bulbar-redness-camera-segmented-control {
+  width: min(100%, 520px);
+}
+
+.bulbar-redness-camera-btn {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(202, 213, 238, 0.96);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease, opacity 0.18s ease;
+}
+
+.bulbar-redness-camera-btn svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.bulbar-redness-camera-enable-btn {
+  background: var(--brand-gradient);
+  color: #ffffff;
+  box-shadow: 0 14px 26px rgba(var(--accent-rgb), 0.26);
+}
+
+.bulbar-redness-camera-enable-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.01);
+}
+
+.bulbar-redness-camera-enable-btn:disabled {
+  opacity: 0.78;
+  cursor: wait;
+  transform: none;
+}
+
+.bulbar-redness-camera-stop-btn {
+  background: linear-gradient(180deg, #eef3ff 0%, #e6edff 100%);
+  color: #5f729d;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.bulbar-redness-camera-stop-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(104, 126, 170, 0.18);
+}
+
+.bulbar-redness-camera-stop-btn:disabled {
+  color: #9ba9c7;
+  cursor: not-allowed;
+  opacity: 1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.bulbar-redness-camera-shell {
+  width: min(640px, 100%);
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid rgba(208, 219, 241, 0.98);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    0 16px 30px rgba(110, 132, 176, 0.08);
+}
+
+.bulbar-redness-camera-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(180px, 24vh, 220px);
+  min-height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+  border: 2px solid rgba(210, 218, 235, 0.94);
+}
+
+.bulbar-redness-camera-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #ffffff;
+}
+
+.bulbar-redness-camera-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(249, 251, 255, 0.96) 100%);
+  color: #21335e;
+}
+
+.bulbar-redness-camera-target {
+  position: absolute;
+  width: min(28%, 190px);
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  border: 2px dashed rgba(197, 206, 224, 0.92);
+}
+
+.bulbar-redness-camera-overlay-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 380px;
+  color: #22355d;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.bulbar-redness-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.bulbar-redness-card {
+  position: relative;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  min-height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
+  box-shadow: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.bulbar-redness-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(88, 109, 154, 0.14);
+}
+
+.bulbar-redness-card.selected {
+  border-color: #7a96ff;
+  box-shadow:
+    0 0 0 4px rgba(var(--accent-rgb), 0.18),
+    0 20px 36px rgba(88, 109, 154, 0.22);
+}
+
+.bulbar-redness-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+  display: block;
+  background: transparent;
+}
+
+.bulbar-redness-save-btn {
+  min-width: 220px;
+  min-height: 56px;
+  padding: 0 28px;
+  border: none;
+  border-radius: 18px;
+  background: var(--brand-gradient);
+  box-shadow: 0 20px 36px rgba(var(--accent-rgb), 0.26);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.bulbar-redness-save-btn:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.bulbar-redness-save-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 24px 40px rgba(var(--accent-rgb), 0.3);
+}
+
+@media (max-width: 1180px) {
+  .clinical-test-card-bulbar {
+    width: min(1120px, 100%);
+    padding: 20px 22px 24px;
+  }
+
+  .bulbar-redness-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 760px;
+  }
+
+  .bulbar-redness-card {
+    height: auto;
+  }
+}
+
+.osdi-questionnaire {
+  display: grid;
+  gap: 16px;
+  width: min(1080px, 100%);
+  margin: 0 auto;
+}
+
+.osdi-questionnaire-header {
+  display: grid;
+  gap: 8px;
+}
+
+.osdi-questionnaire-title {
+  margin: 0;
+  color: var(--brand-deep);
+  font-size: clamp(22px, 2vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.osdi-questionnaire-copy,
+.osdi-evaluation-copy {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(14px, 0.98vw, 16px);
+  line-height: 1.5;
+}
+
+.osdi-section-list {
+  display: grid;
+  gap: 16px;
+}
+
+.osdi-section {
+  display: grid;
+  gap: 10px;
+}
+
+.osdi-section-title,
+.osdi-evaluation-title {
+  margin: 0;
+  color: var(--brand-deep);
+  font-size: clamp(17px, 1.08vw, 21px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.osdi-grid-header,
+.osdi-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.25fr) repeat(5, minmax(84px, 1fr));
+  align-items: center;
+}
+
+.osdi-grid-header.has-na,
+.osdi-row.has-na {
+  grid-template-columns: minmax(220px, 1.25fr) repeat(6, minmax(84px, 1fr));
+}
+
+.osdi-grid-header {
+  padding: 14px 10px;
+  background: #f2f4f7;
+}
+
+.osdi-grid-header-spacer {
+  min-height: 1px;
+}
+
+.osdi-grid-column-title {
+  padding: 0 8px;
+  text-align: center;
+  color: var(--text);
+  font-size: clamp(12px, 0.88vw, 14px);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.osdi-row-list {
+  display: grid;
+}
+
+.osdi-row {
+  padding: 12px 10px;
+  border-bottom: 1px solid #d8dee7;
+}
+
+.osdi-row-question {
+  padding: 0 12px 0 6px;
+  color: var(--text);
+  font-size: clamp(13px, 0.9vw, 15px);
+  line-height: 1.4;
+}
+
+.osdi-choice-pill {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 56px;
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid #b8c8ff;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.osdi-choice-pill.active {
+  background: #eef2ff;
+  border-color: #4a67f5;
+  color: #2445eb;
+}
+
+.osdi-choice-value {
+  font-size: clamp(13px, 0.88vw, 15px);
+  font-weight: 500;
+}
+
+.osdi-choice-circle {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #b8c8ff;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.osdi-choice-circle.active {
+  background: #4a67f5;
+  border-color: #4a67f5;
+}
+
+.osdi-subtotal-row,
+.osdi-formula-line {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  font-size: clamp(14px, 0.95vw, 16px);
+  font-weight: 500;
+  text-align: right;
+}
+
+.osdi-subtotal-label {
+  line-height: 1.35;
+}
+
+.osdi-score-box {
+  min-width: 52px;
+  min-height: 38px;
+  padding: 4px 10px;
+  border: 1px solid #d8dee7;
+  background: #ffffff;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(15px, 0.98vw, 18px);
+  font-weight: 600;
+}
+
+.osdi-formula-panel {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.osdi-formula-caption {
+  color: var(--text-soft);
+  font-size: clamp(12px, 0.82vw, 14px);
+  font-weight: 500;
+  text-align: center;
+}
+
+.osdi-evaluation {
+  display: grid;
+  gap: 10px;
+}
+
+.osdi-score-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.osdi-score-summary-card,
+.osdi-footer-field {
+  display: grid;
+  gap: 10px;
+}
+
+.osdi-score-summary-card {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: #f7fafc;
+  border: 1px solid var(--line);
+}
+
+.osdi-score-summary-card span,
+.osdi-footer-field label {
+  color: var(--text-soft);
+  font-size: clamp(13px, 0.88vw, 15px);
+  font-weight: 500;
+}
+
+.osdi-score-summary-card strong {
+  color: var(--text);
+  font-size: clamp(17px, 1.08vw, 20px);
+  font-weight: 600;
+}
+
+.osdi-footer-fields {
+  display: grid;
+  gap: 12px;
+}
+
+.osdi-footer-input {
+  min-height: 44px;
+  border-color: #b8c8ff;
+  border-radius: 14px;
+}
+
+.deq-questionnaire {
+  display: grid;
+  gap: 16px;
+  width: min(1080px, 100%);
+  margin: 0 auto;
+}
+
+.deq-questionnaire-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.deq-questionnaire-title {
+  margin: 0;
+  color: var(--brand-deep);
+  font-size: clamp(22px, 2vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.deq-summary-grid {
+  margin-bottom: 0;
+}
+
+.deq-summary-grid .clinical-test-summary-card {
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.deq-summary-grid .clinical-test-summary-card span {
+  font-size: 11px;
+}
+
+.deq-summary-grid .clinical-test-summary-card strong {
+  font-size: 18px;
+}
+
+.deq-questionnaire-sections,
+.deq-question-list {
+  display: grid;
+  gap: 16px;
+}
+
+.deq-section {
+  display: grid;
+  gap: 12px;
+}
+
+.deq-section-title {
+  margin: 0;
+  color: var(--brand-deep);
+  font-size: clamp(18px, 1.28vw, 24px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.deq-question-block {
+  display: grid;
+  gap: 8px;
+}
+
+.deq-question-prompt {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(14px, 0.98vw, 16px);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.deq-response-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: 1px solid #1f2937;
+  background: #ffffff;
+}
+
+.deq-response-option {
+  display: grid;
+  grid-template-rows: minmax(50px, auto) minmax(42px, auto);
+  padding: 0;
+  border: none;
+  border-right: 1px solid #1f2937;
+  background: #ffffff;
+  color: #101828;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.deq-response-option:last-child {
+  border-right: none;
+}
+
+.deq-response-option.active {
+  background: #eef2ff;
+}
+
+.deq-response-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #1f2937;
+  text-align: center;
+  font-size: clamp(12px, 0.88vw, 14px);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.deq-response-score-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 10px;
+  font-size: clamp(14px, 0.95vw, 16px);
+}
+
+.deq-response-score {
+  font-weight: 500;
+}
+
+.deq-response-checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #94a3b8;
+  color: transparent;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.deq-response-checkbox.active {
+  border-color: #4a67f5;
+  background: #4a67f5;
+  color: #ffffff;
+}
+
+.ocular-image-tools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ocular-tool-btn {
+  min-height: 44px;
+  border: 1px solid #d7e5ef;
+  background: #ffffff;
+  color: #5b6f80;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ocular-tool-btn:hover {
+  border-color: #5fa5d7;
+  color: #245d84;
+  background: #f4fbff;
+}
+
+.ocular-tool-btn.danger:hover {
+  border-color: #efb8c0;
+  color: #c24557;
+  background: #fff5f6;
+}
+
+.ocular-tool-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ocular-analysis-input {
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  margin-top: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #1e293b;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ocular-analysis-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--brand-focus-ring);
+}
+
+.ocular-download-btn {
+  width: auto;
+  margin-top: 0;
+  border: 0;
+  border-radius: 0;
+  min-height: 52px;
+  min-width: 0;
+  flex: 1 1 0;
+  padding: 0 18px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.ocular-download-btn:hover {
+  background: #ffffff;
+  color: #2048b8;
+}
+
+.ocular-download-btn:active {
+  opacity: 0.95;
+}
+
+.ocular-report-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 24px auto 0;
+}
+
+.ocular-report-divider {
+  width: 2px;
+  align-self: stretch;
+  flex: 0 0 2px;
+  background: rgba(255, 255, 255, 0.98);
+  pointer-events: none;
+}
+
+.ocular-save-btn {
+  width: auto;
+  border: 0;
+  border-radius: 0;
+  min-height: 52px;
+  min-width: 0;
+  flex: 1 1 0;
+  padding: 0 18px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.ocular-save-btn:hover {
+  background: #ffffff;
+  color: #2048b8;
+}
+
+.ocular-save-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.meibography-review-toolbar .meibography-manual-btn-overlay,
+.meibography-review-toolbar .meibography-review-btn,
+.meibography-review-toolbar > .meibography-capture-btn-overlay {
+  min-width: 0;
+  min-height: 46px;
+  border-radius: 14px;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  backdrop-filter: none;
+  box-shadow: 0 8px 18px rgba(73, 116, 153, 0.14);
+  white-space: nowrap;
+}
+
+.meibography-review-toolbar > .meibography-capture-btn-overlay {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.meibography-review-toolbar > .meibography-capture-btn-overlay svg {
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+}
+
+.meibography-review-toolbar > .meibography-capture-btn-overlay span {
+  width: auto;
+  text-align: left;
+}
+
+.meibography-review-toolbar > .blink-start-btn {
+  min-width: 220px;
+  min-height: 44px;
+  padding: 0 18px;
+  gap: 10px;
+  justify-content: center;
+}
+
+.meibography-review-toolbar > .blink-start-btn .blink-start-btn-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+}
+
+.meibography-review-toolbar > .blink-start-btn span {
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.meibography-review-toolbar .meibography-manual-btn-overlay {
+  background: var(--brand-gradient);
+  border: 1px solid rgba(124, 186, 227, 0.46);
+}
+
+.meibography-review-toolbar .meibography-manual-btn-overlay:hover {
+  background: var(--brand-gradient-hover);
+  border-color: rgba(124, 186, 227, 0.68);
+}
+
+.meibography-review-toolbar .meibography-manual-btn-overlay.active {
+  background: var(--brand-gradient);
+  border-color: rgba(151, 205, 238, 0.72);
+}
+
+.meibography-review-toolbar .meibography-review-button-group .meibography-review-btn,
+.meibography-review-toolbar .meibography-review-button-group .meibography-manual-btn-overlay {
+  min-height: 52px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.meibography-review-toolbar .meibography-review-button-group .meibography-manual-btn-overlay {
+  border: 0;
+}
+
+.meibography-review-toolbar .meibography-review-button-group .meibography-manual-btn-overlay:hover,
+.meibography-review-toolbar .meibography-review-button-group .meibography-manual-btn-overlay.active {
+  background: #ffffff;
+  border-color: transparent;
+  color: #2048b8;
+}
+
+@media (max-width: 900px) {
+  .meibography-capture-segmented-control {
+    flex: 1 1 100%;
+    min-width: 280px;
+  }
+
+  .meibography-review-segmented-control {
+    flex: 1 1 100%;
+    max-width: none;
+    min-width: 320px;
+  }
+
+  .meibography-tear-segmented-control {
+    flex: 1 1 100%;
+    max-width: none;
+    min-width: 280px;
+  }
+
+  .meibography-blink-segmented-control {
+    flex: 1 1 100%;
+    max-width: none;
+    min-width: 320px;
+  }
+
+  .meibography-review-toolbar {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  .meibography-review-toolbar > .meibography-capture-btn-overlay,
+  .meibography-review-toolbar > .meibography-review-btn {
+    flex: 1 1 220px;
+    min-width: 200px;
+  }
+
+  .meibography-review-toolbar > .blink-start-btn {
+    flex: 0 0 auto;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .meibography-review-toolbar > .meibography-capture-btn-overlay,
+  .meibography-review-toolbar > .meibography-review-btn {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .meibography-review-toolbar > .blink-start-btn {
+    width: auto;
+    min-width: 220px;
+    max-width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1280px) {
+  .meibography-overlay-controls {
+    width: min(960px, calc(100% - 24px));
+  }
+
+  .ocular-analysis-panel {
+    width: 320px;
+  }
+
+  .ocular-analysis-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .meibography-overlay-controls {
+    bottom: max(24px, calc(env(safe-area-inset-bottom) + 6px));
+    padding: 10px;
+  }
+
+  .meibography-review-controls {
+    bottom: max(24px, calc(env(safe-area-inset-bottom) + 6px));
+    padding: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .ocular-analysis-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meibography-analysis-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meibography-overlay-controls,
+  .meibography-review-controls {
+    width: calc(100% - 16px);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: max(18px, calc(env(safe-area-inset-bottom) + 4px));
+  }
+
+  .meibography-active-target-pill {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ocular-report-actions {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .ocular-image-tools {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .clinical-test-summary-grid,
+  .clinical-test-fields-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .clinical-test-summary-grid-wide,
+  .clinical-test-table-header,
+  .clinical-test-table-row {
+    grid-template-columns: 1fr;
+  }
+
+  .clinical-test-actions {
+    flex-direction: column;
+  }
+
+  .blink-counter-inline-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .blink-counter-hud {
+    padding: 16px 18px 22px;
+  }
+
+  .blink-counter-hud-label,
+  .blink-counter-hud-mode {
+    font-size: 11px;
+  }
+
+  .blink-counter-hud-timer {
+    font-size: 28px;
+  }
+
+  .blink-counter-hud-bpm {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 720px) {
+  .clinical-module-stage,
+  .clinical-test-panel {
+    padding: 16px;
+  }
+
+  .clinical-module-stage-card,
+  .clinical-test-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .deq-questionnaire {
+    gap: 18px;
+  }
+
+  .contrast-setup {
+    min-height: auto;
+    padding: 28px 12px 20px;
+    gap: 20px;
+  }
+
+  .contrast-setup-copy {
+    font-size: 18px;
+  }
+
+  .contrast-setup-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .contrast-setup-option {
+    font-size: 18px;
+  }
+
+  .contrast-setup-proceed {
+    min-width: 140px;
+    min-height: 52px;
+    font-size: 20px;
+  }
+
+  .contrast-setup-skip {
+    font-size: 18px;
+  }
+
+  .bulbar-redness-reference-shell {
+    gap: 16px;
+    width: 100%;
+  }
+
+  .clinical-test-card-bulbar {
+    padding: 18px 16px 22px;
+    border-radius: 24px;
+  }
+
+  .bulbar-redness-control-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .bulbar-redness-camera-segmented-control {
+    width: 100%;
+  }
+
+  .bulbar-redness-camera-btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .bulbar-redness-camera-shell {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .bulbar-redness-camera-stage {
+    height: 190px;
+    min-height: 0;
+    border-radius: 18px;
+  }
+
+  .bulbar-redness-camera-overlay {
+    padding: 20px;
+  }
+
+  .bulbar-redness-camera-target {
+    width: min(58%, 210px);
+  }
+
+  .bulbar-redness-camera-overlay-copy {
+    max-width: 260px;
+    font-size: 15px;
+  }
+
+  .bulbar-redness-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .bulbar-redness-card {
+    height: auto;
+  }
+
+  .bulbar-redness-save-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    font-size: 18px;
+  }
+
+  .osdi-grid-header,
+  .osdi-row,
+  .osdi-grid-header.has-na,
+  .osdi-row.has-na {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .osdi-grid-header {
+    padding: 12px;
+  }
+
+  .osdi-grid-header-spacer {
+    display: none;
+  }
+
+  .osdi-grid-column-title {
+    text-align: left;
+    padding: 0;
+  }
+
+  .osdi-row {
+    padding: 12px 0;
+  }
+
+  .osdi-row-question {
+    padding: 0;
+  }
+
+  .osdi-choice-pill {
+    justify-self: stretch;
+    width: 100%;
+    min-height: 36px;
+  }
+
+  .osdi-subtotal-row,
+  .osdi-formula-line {
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 15px;
+  }
+
+  .osdi-formula-caption {
+    font-size: 14px;
+  }
+
+  .osdi-score-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .deq-questionnaire-title {
+    font-size: 26px;
+  }
+
+  .deq-section-title {
+    font-size: 20px;
+  }
+
+  .deq-question-prompt {
+    font-size: 15px;
+  }
+
+  .deq-response-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deq-response-option {
+    grid-template-rows: auto auto;
+    border-right: none;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .deq-response-option:last-child {
+    border-bottom: none;
+  }
+
+  .blink-counter-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .blink-counter-preview-shell {
+    min-height: 240px;
+  }
+
+  .blink-counter-inline-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .blink-counter-hud {
+    padding: 14px 14px 18px;
+  }
+
+  .blink-counter-hud-top {
+    grid-template-columns: 1fr auto;
+  }
+
+  .blink-counter-hud-mode {
+    display: none;
+  }
+
+  .blink-counter-hud-timer {
+    font-size: 24px;
+  }
+
+  .blink-counter-hud-bpm {
+    font-size: 16px;
+  }
+}
+}

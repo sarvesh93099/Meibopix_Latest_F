@@ -1,0 +1,13 @@
+.git
+.venv
+venv
+__pycache__
+**/__pycache__
+*.py[cod]
+*.log
+*.db
+uploads/
+reports/
+.smoke_runtime/
+tests/
+smoke_tests.py
