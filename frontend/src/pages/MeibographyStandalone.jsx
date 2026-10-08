@@ -1,7 +1,7 @@
 // Main exam workspace that coordinates capture, analysis, review, reporting, and auxiliary tests.
 import React, { Suspense, lazy, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { BarChart3, Bell, Camera, Check, ChevronLeft, Contrast, Eye, FileText, PencilLine, RotateCcw, Save, Settings, Sun, Trash2, Upload, ZoomIn, ZoomOut } from 'lucide-react'
+import { Activity, BarChart3, Bell, Camera, Check, ChevronLeft, Contrast, Eye, FileText, PencilLine, RotateCcw, Save, Settings, Sun, Trash2, Upload, ZoomIn, ZoomOut } from 'lucide-react'
 import axios from 'axios'
 import '../styles/dashboard.css'
 import '../styles/clinical.css'
@@ -3301,6 +3301,17 @@ const MeibographyStandalone = () => {
                       <div className="blink-counter-placeholder">
                         {cameraError || 'Camera is not ready. Enable camera access to record blink rate.'}
                       </div>
+                    )}
+                    {cameraReady && !isRecordingBlinkCounter && !isAnalyzingBlinkCounter && (
+                      <button
+                        type="button"
+                        className="blink-camera-start-button"
+                        onClick={handleStartBlinkRecording}
+                        aria-label="Count my blinks for 30 seconds"
+                      >
+                        <Activity size={18} aria-hidden="true" />
+                        <span>Count my blinks</span>
+                      </button>
                     )}
                   </div>
 

@@ -2550,6 +2550,41 @@
   backdrop-filter: none !important;
 }
 
+.blink-camera-start-button {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: rgba(18, 92, 72, 0.94);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+}
+
+.blink-camera-start-button:hover {
+  background: rgba(13, 76, 59, 0.98);
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 11px 28px rgba(0, 0, 0, 0.34);
+}
+
+.blink-camera-start-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
 .blink-counter-placeholder {
   position: absolute;
   inset: auto 24px 24px 24px;

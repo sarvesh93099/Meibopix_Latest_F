@@ -73,8 +73,8 @@ def _create_face_landmarker(running_mode):
     options = mp_vision.FaceLandmarkerOptions(
         base_options=mp_python.BaseOptions(model_asset_path=_get_model_path()),
         running_mode=running_mode, num_faces=1,
-        min_face_detection_confidence=0.5, min_face_presence_confidence=0.5,
-        min_tracking_confidence=0.5, output_face_blendshapes=True,
+        min_face_detection_confidence=0.35, min_face_presence_confidence=0.4,
+        min_tracking_confidence=0.4, output_face_blendshapes=True,
     )
     return mp_vision.FaceLandmarker.create_from_options(options)
 
@@ -98,10 +98,17 @@ def _resize_for_detection(frame):
 
 def _eye_aspect_ratio(landmarks, indices, width, height):
     points = [np.array([landmarks[index].x * width, landmarks[index].y * height]) for index in indices]
-    horizontal = np.linalg.norm(points[0] - points[3])
+    eye_axis = points[3] - points[0]
+    horizontal = np.linalg.norm(eye_axis)
     if horizontal < 1e-6:
         return None
-    return float((np.linalg.norm(points[1] - points[5]) + np.linalg.norm(points[2] - points[4])) / (2 * horizontal))
+    axis = eye_axis / horizontal
+    perpendicular = np.array([-axis[1], axis[0]])
+    vertical_one = abs(float(np.dot(points[1] - points[5], perpendicular)))
+    vertical_two = abs(float(np.dot(points[2] - points[4], perpendicular)))
+    # Project lid separation perpendicular to each eye's own corner axis so
+    # head roll does not make a normally open eye appear closed.
+    return float((vertical_one + vertical_two) / (2 * horizontal))
 
 
 def _frame_metrics(result, width, height, ear_threshold=DEFAULT_EAR_THRESHOLD):
@@ -116,19 +123,26 @@ def _frame_metrics(result, width, height, ear_threshold=DEFAULT_EAR_THRESHOLD):
         return empty
     left = _eye_aspect_ratio(landmarks, LEFT_EYE, width, height)
     right = _eye_aspect_ratio(landmarks, RIGHT_EYE, width, height)
-    if left is None or right is None:
-        return empty
-    ear = (left + right) / 2.0
     categories = result.face_blendshapes[0] if result.face_blendshapes else []
     scores = {category.category_name: category.score for category in categories}
-    score = None
-    if 'eyeBlinkLeft' in scores and 'eyeBlinkRight' in scores:
-        score = (float(scores['eyeBlinkLeft']) + float(scores['eyeBlinkRight'])) / 2
+    left_score = float(scores['eyeBlinkLeft']) if 'eyeBlinkLeft' in scores else None
+    right_score = float(scores['eyeBlinkRight']) if 'eyeBlinkRight' in scores else None
+    available_ears = [value for value in (left, right) if value is not None]
+    available_scores = [value for value in (left_score, right_score) if value is not None]
+    if not available_ears and not available_scores:
+        return empty
+    ear = sum(available_ears) / len(available_ears) if available_ears else None
+    score = sum(available_scores) / len(available_scores) if available_scores else None
     # EAR stays geometric (lower = closed); blendshape stays separate (higher = closed).
     return {
         'face_found': True, 'detection_mode': 'MEDIAPIPE',
-        'combined_ear': round(ear, 4), 'blink_score': round(score, 4) if score is not None else None,
-        'is_closed': bool(ear < ear_threshold or (score is not None and score >= 0.45)),
+        'combined_ear': round(ear, 4) if ear is not None else None,
+        'blink_score': round(score, 4) if score is not None else None,
+        'left_ear': round(left, 4) if left is not None else None,
+        'right_ear': round(right, 4) if right is not None else None,
+        'left_blink_score': round(left_score, 4) if left_score is not None else None,
+        'right_blink_score': round(right_score, 4) if right_score is not None else None,
+        'is_closed': bool(any(value is not None and value < ear_threshold for value in (left, right)) or any(value is not None and value >= 0.45 for value in (left_score, right_score))),
         'ear_threshold': ear_threshold, 'overlay_anchor': None,
     }
 
